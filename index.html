@@ -6,7 +6,8 @@
 <title>Catherine Brenda Agabirwe | Financial Literacy Trainer, Kampala</title>
 <meta name="description" content="Catherine Brenda Agabirwe is a Bank of Uganda accredited Financial Literacy Trainer and Senior Partner at Springforth Advisory Limited, Kampala. Practical financial literacy and financial wellness training for individuals, families, employers and organizations.">
 <meta name="author" content="Catherine Brenda Agabirwe">
-<meta name="theme-color" content="#16164a">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light only">
 <link rel="canonical" href="https://imbabali.github.io/brenda-agabirwe/">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Catherine Brenda Agabirwe">
@@ -24,7 +25,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
 document.documentElement.className = 'js';
-try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
 <script type="application/ld+json">
 {
@@ -82,42 +82,7 @@ try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') 
   --line-band: rgba(255, 255, 255, 0.16);
   --tint: #eceef8;
   color-scheme: light;
-  --logo-plate: transparent;
   --focus: #29a84f;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0e0f24;
-    --sand: #13142e;
-    --surface: #1a1b3a;
-    --ink: #ecebf5;
-    --muted: #a9aac6;
-    --heading: #d3d4fa;
-    --navy: #8f90e6;
-    --band: #1c1d52;
-    --band-raised: #26276a;
-    --green-text: #74d692;
-    --line: #2b2c54;
-    --tint: #20214a;
-    --logo-plate: #ffffff;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #0e0f24;
-  --sand: #13142e;
-  --surface: #1a1b3a;
-  --ink: #ecebf5;
-  --muted: #a9aac6;
-  --heading: #d3d4fa;
-  --navy: #8f90e6;
-  --band: #1c1d52;
-  --band-raised: #26276a;
-  --green-text: #74d692;
-  --line: #2b2c54;
-  --tint: #20214a;
-  --logo-plate: #ffffff;
-  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -188,21 +153,16 @@ p { text-wrap: pretty; }
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
-.brand img { height: 54px; width: auto; background: var(--logo-plate); border-radius: 8px; padding: 2px 6px; }
+.brand img { height: 54px; width: auto; border-radius: 8px; padding: 2px 6px; }
 .nav-list { list-style: none; display: flex; align-items: center; gap: 28px; }
 .nav-list a:not(.btn) { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--ink); padding: 10px 0; }
 .nav-list a:not(.btn):hover { color: var(--green-text); }
 .nav-list .btn { min-height: 42px; padding: 10px 20px; font-size: 0.88rem; }
 .site-nav { margin-left: auto; }
-.theme-btn { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 12px; background: transparent; border: 1px solid var(--line); color: var(--ink); cursor: pointer; transition: border-color .2s ease; }
-.theme-btn:hover { border-color: var(--heading); }
-.theme-btn .moon { display: none; }
-.is-dark .theme-btn .sun { display: none; }
-.is-dark .theme-btn .moon { display: block; }
 .menu-btn { display: none; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 12px; background: transparent; border: 1px solid var(--line); color: var(--ink); cursor: pointer; }
 @media (max-width: 920px) {
   .menu-btn { display: inline-flex; }
-  .theme-btn { margin-left: auto; }
+  .menu-btn { margin-left: auto; }
   .site-nav { position: absolute; top: 72px; left: 0; right: 0; background: var(--paper); border-bottom: 1px solid var(--line); display: none; }
   .site-nav.open { display: block; }
   .nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 16px 20px; }
@@ -405,7 +365,7 @@ p { text-wrap: pretty; }
 /* Footer */
 footer { padding: 40px 0; border-top: 1px solid var(--line); }
 footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; font-size: 0.86rem; color: var(--muted); }
-footer img { height: 64px; width: auto; background: var(--logo-plate); border-radius: 8px; padding: 4px 6px; }
+footer img { height: 64px; width: auto; border-radius: 8px; padding: 4px 6px; }
 footer a { color: var(--heading); font-weight: 600; text-decoration: none; }
 
 /* Motion */
@@ -421,7 +381,7 @@ footer a { color: var(--heading); font-weight: 600; text-decoration: none; }
 @media print {
   @page { margin: 14mm; }
   body { background: #fff; color: #111; font-size: 10.5pt; }
-  .site-header, .skip, .hero-actions, .purpose .actions, #kit, .form-card, .side-actions, .menu-btn, .theme-btn, footer .top { display: none !important; }
+  .site-header, .skip, .hero-actions, .purpose .actions, #kit, .form-card, .side-actions, .menu-btn, footer .top { display: none !important; }
   section { padding: 18px 0; }
   .band, .tile.feature, .cred-grid > div { background: #fff !important; color: #111 !important; }
   .band h2, .band .lead, .band .eyebrow, .cred-grid .big, .cred-grid p, .journey .org, .journey .label, .purpose .copy p, .contact-list a, .contact-list small, .tile.feature h3, .tile.feature p, .tile.feature .tag { color: #111 !important; }
@@ -458,8 +418,6 @@ footer a { color: var(--heading); font-weight: 600; text-decoration: none; }
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.5"/><path d="M5.5 16.5a3.5 3.5 0 0 1 7 0M15 10h3M15 14h3"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
-  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></symbol>
 </svg>
 
@@ -478,7 +436,6 @@ footer a { color: var(--heading); font-weight: 600; text-decoration: none; }
         <li><a class="btn btn-cta" href="#contact">Plan a training</a></li>
       </ul>
     </nav>
-    <button class="theme-btn" type="button" aria-label="Switch to dark mode"><svg class="i sun" aria-hidden="true"><use href="#i-moon"/></svg><svg class="i moon" aria-hidden="true"><use href="#i-sun"/></svg></button>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg class="i" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
 </header>
@@ -760,27 +717,6 @@ footer a { color: var(--heading); font-weight: 600; text-decoration: none; }
 
 <script>
 (function () {
-  // Light / dark mode: follows the device until the visitor chooses
-  var root = document.documentElement;
-  var themeBtn = document.querySelector('.theme-btn');
-  var themeMeta = document.querySelector('meta[name="theme-color"]');
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  function isDark() { var t = root.getAttribute('data-theme'); return t ? t === 'dark' : mq.matches; }
-  function paint() {
-    var dark = isDark();
-    root.classList.toggle('is-dark', dark);
-    themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    themeMeta.setAttribute('content', dark ? '#0e0f24' : '#ffffff');
-  }
-  themeBtn.addEventListener('click', function () {
-    var next = isDark() ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    paint();
-  });
-  if (mq.addEventListener) mq.addEventListener('change', paint);
-  paint();
-
   // Mobile menu
   var btn = document.querySelector('.menu-btn');
   var nav = document.getElementById('site-nav');
