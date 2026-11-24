@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,278 +60,323 @@
 <style>
 :root {
   --navy: #021d3e; --navy-2: #0c2c55; --navy-3: #133a6b;
-  --green: #149a5e; --green-dk: #0b6b45; --cta: #0e7446; --cta-hover: #0a5a36;
-  --gold: #c9a55a; --gold-lt: #e2c47f;
-  --bg: #f8fafc; --card: #ffffff; --ink: #0f1d33; --muted: #475569; --border: #e2e8f0;
-  --on-navy: #ffffff; --on-navy-muted: #c3cde0; --line-navy: rgba(255,255,255,.16);
-  --r-sm: 8px; --r-md: 12px; --r-lg: 20px;
-  --shadow-sm: 0 1px 2px rgba(15,29,51,.06), 0 1px 3px rgba(15,29,51,.08);
-  --shadow-md: 0 12px 32px -12px rgba(2,29,62,.22);
-  --space-section: clamp(64px, 9vw, 112px);
-  --ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --green: #149a5e; --green-dk: #0b6b45; --cta: #0e7446; --cta-h: #0a5a36;
+  --gold: #c9a55a; --gold-lt: #e2c47f; --gold-deep: #7a5a14;
+  --paper: #f6f7fa; --white: #ffffff; --ink: #0f1d33; --muted: #4a5568; --line: #dfe4ec;
+  --on-navy: #ffffff; --on-navy-m: #c3cde0; --line-navy: rgba(255,255,255,.16);
+  --head: 76px; --r: 18px;
+  --ease: cubic-bezier(.16,1,.3,1);
   color-scheme: light;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; caret-color: var(--cta); scrollbar-color: var(--muted) var(--bg); }
-body { background: var(--bg); color: var(--ink); font-family: 'Montserrat', system-ui, sans-serif; font-size: 1rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+html { scroll-padding-top: calc(var(--head) + 8px); caret-color: var(--cta); scrollbar-color: var(--muted) var(--paper); }
+@media (prefers-reduced-motion: no-preference) { html:not(.lenis) { scroll-behavior: smooth; } }
+body { background: var(--white); color: var(--ink); font-family: 'Montserrat', system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 ::selection { background: var(--green); color: #fff; }
-img { max-width: 100%; display: block; height: auto; }
-a { color: inherit; text-underline-offset: 0.2em; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: .2em; }
 :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 6px; }
-.skip { position: absolute; left: -999px; top: 8px; background: #fff; color: var(--ink); padding: 10px 16px; border-radius: 8px; z-index: 50; }
+.on-navy :focus-visible, .navy :focus-visible { outline-color: var(--gold-lt); }
+.skip { position: absolute; left: -999px; top: 8px; background: #fff; color: var(--ink); padding: 10px 16px; border-radius: 8px; z-index: 60; }
 .skip:focus { left: 16px; }
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 720px) { .wrap { padding: 0 40px; } }
 .ic { width: 1.25em; height: 1.25em; flex: none; }
-.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
-@media (min-width: 720px) { .wrap { padding: 0 32px; } }
-section { padding: var(--space-section) 0; }
-h1, h2, h3 { color: var(--navy); font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; }
-h2 { font-size: clamp(1.75rem, 3.4vw, 2.6rem); line-height: 1.15; }
-h3 { font-size: 1.25rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+h1, h2, h3 { font-weight: 900; color: var(--navy); letter-spacing: -.035em; text-wrap: balance; }
+h2 { font-size: clamp(2.1rem, 4.4vw, 3.6rem); line-height: 1.02; }
+h3 { font-size: 1.3rem; line-height: 1.25; font-weight: 800; letter-spacing: -.015em; }
 p { text-wrap: pretty; }
-.sec-head { max-width: 46rem; margin-bottom: clamp(36px, 5vw, 56px); }
-.sec-head .tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 700; color: var(--green-dk); margin-bottom: 12px; }
-.sec-head p { margin-top: 14px; color: var(--muted); font-size: 1.1rem; max-width: 40rem; }
-.center { text-align: center; margin-left: auto; margin-right: auto; }
-.center p { margin-left: auto; margin-right: auto; }
+.navy { background: var(--navy); color: var(--on-navy); }
+.navy h2, .navy h3 { color: #fff; }
+.dia { display: inline-block; width: .55em; height: .55em; background: var(--gold); transform: rotate(45deg); flex: none; }
 
 /* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 24px; border-radius: var(--r-sm);
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 14px 26px; border-radius: 999px;
   font: 700 1rem/1 'Montserrat', sans-serif; text-decoration: none; cursor: pointer; border: 2px solid transparent;
-  transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .15s ease; }
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .15s ease; }
 .btn:active { transform: scale(.97); }
+.btn .ic { width: 20px; height: 20px; }
 .btn-primary { background: var(--cta); color: #fff; }
-.btn-primary:hover { background: var(--cta-hover); }
-.btn-outline { border-color: var(--navy); color: var(--navy); background: transparent; }
-.btn-outline:hover { background: var(--navy); color: #fff; }
+.btn-primary:hover { background: var(--cta-h); }
+.btn-line { border-color: var(--navy); color: var(--navy); }
+.btn-line:hover { background: var(--navy); color: #fff; }
 .btn-light { background: #fff; color: var(--navy); }
 .btn-light:hover { background: var(--gold-lt); }
-.btn-ghost-light { border-color: rgba(255,255,255,.5); color: #fff; }
-.btn-ghost-light:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+.btn-ghost { border-color: rgba(255,255,255,.55); color: #fff; }
+.btn-ghost:hover { background: #fff; color: var(--navy); }
 
 /* Header */
-.site-header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.98); border-bottom: 1px solid var(--border); }
-.site-header .wrap { display: flex; align-items: center; height: 72px; gap: 16px; }
+.site-header { position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; height: var(--head); gap: 16px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-height: 44px; }
 .brand img { width: 40px; height: 40px; }
-.brand-name { display: block; font-weight: 800; font-size: 1rem; line-height: 1.15; color: var(--navy); white-space: nowrap; }
-.brand-role { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.brand-name { display: block; font-weight: 800; font-size: 1rem; line-height: 1.15; color: var(--navy); white-space: nowrap; letter-spacing: -.01em; }
+.brand-role { display: block; font-size: .8rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
 .site-nav { margin-left: auto; }
-.nav-list { list-style: none; display: flex; align-items: center; gap: 4px; }
-.nav-list a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: var(--r-sm); text-decoration: none; font-size: 0.92rem; font-weight: 600; color: var(--ink); transition: background-color .2s ease, color .2s ease; }
-.nav-list a:not(.btn):hover { background: var(--bg); color: var(--cta); }
-.nav-list .btn { margin-left: 8px; min-height: 44px; padding: 10px 18px; font-size: 0.92rem; }
-.menu-btn { display: none; margin-left: auto; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--r-sm); background: #fff; border: 1px solid var(--border); color: var(--ink); cursor: pointer; }
+.nav-list { list-style: none; display: flex; align-items: center; gap: 2px; }
+.nav-list a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; padding: 0 13px; border-radius: 999px; text-decoration: none; font-size: .92rem; font-weight: 600; color: var(--ink); transition: background-color .2s ease; }
+.nav-list a:not(.btn):hover { background: var(--paper); }
+.nav-list .btn { margin-left: 10px; min-height: 46px; padding: 10px 20px; font-size: .92rem; }
+.menu-btn { display: none; margin-left: auto; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--ink); cursor: pointer; }
 .menu-btn svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; }
-@media (max-width: 1080px) {
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: var(--gold); transform-origin: left; transform: scaleX(0); }
+@supports (animation-timeline: scroll()) { .progress { animation: progress linear both; animation-timeline: scroll(root); } @keyframes progress { to { transform: scaleX(1); } } }
+@supports not (animation-timeline: scroll()) { .progress { display: none; } }
+@media (max-width: 1100px) {
   .menu-btn { display: inline-flex; }
-  .site-nav { position: absolute; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); display: none; }
+  .site-nav { position: absolute; top: var(--head); left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); display: none; box-shadow: 0 24px 40px -24px rgba(2,29,62,.35); }
   .site-nav.open { display: block; }
-  .nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 20px; }
-  .nav-list a:not(.btn) { padding: 0 4px; min-height: 52px; font-size: 1rem; border-bottom: 1px solid var(--border); border-radius: 0; }
+  .nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 22px; }
+  .nav-list a:not(.btn) { min-height: 54px; padding: 0 4px; font-size: 1.05rem; border-radius: 0; border-bottom: 1px solid var(--line); }
   .nav-list li:last-child { padding-top: 16px; }
-  .nav-list .btn { width: 100%; margin: 0; min-height: 52px; }
+  .nav-list .btn { width: 100%; margin: 0; }
 }
-@media (max-width: 380px) { .brand-name { font-size: 0.92rem; } .brand img { width: 34px; height: 34px; } }
+@media (max-width: 380px) { .brand-name { font-size: .92rem; } .brand img { width: 34px; height: 34px; } }
 
 /* Hero */
-.hero { position: relative; padding: clamp(40px, 7vw, 96px) 0 clamp(56px, 8vw, 104px); background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%); overflow: hidden; }
-.hero-grid { display: grid; gap: clamp(40px, 6vw, 72px); align-items: center; }
-@media (min-width: 960px) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; } }
-.badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #e9f6ef; color: var(--green-dk); font-size: 0.88rem; font-weight: 700; line-height: 1.3; }
-.badge .ic { width: 18px; height: 18px; }
-.hero h1 { margin-top: 20px; font-size: clamp(2.2rem, 5.4vw, 4.2rem); line-height: 1.04; letter-spacing: -0.035em; }
-.hero-sub { margin-top: 14px; font-size: clamp(1.05rem, 1.5vw, 1.2rem); font-weight: 600; color: var(--navy-3); }
-.hero-lead { margin-top: 18px; font-size: clamp(1.1rem, 1.6vw, 1.28rem); color: var(--muted); max-width: 36rem; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.hero-facts { list-style: none; display: grid; gap: 10px; margin-top: 30px; color: var(--ink); }
-.hero-facts li { display: flex; gap: 10px; align-items: flex-start; }
-.hero-facts .ic { color: var(--green); margin-top: 3px; }
-@media (max-width: 559px) { .hero-actions .btn { width: 100%; } }
-.hero-visual { position: relative; justify-self: center; width: min(100%, 420px); }
-.portrait-card { position: relative; border-radius: var(--r-lg); overflow: hidden; background: var(--navy); box-shadow: var(--shadow-md); }
-.portrait-card img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 14%; }
-.hero-visual .gem { position: absolute; top: -14px; right: -14px; width: 32px; height: 32px; z-index: 2; }
-.float-card { position: absolute; left: -24px; bottom: 28px; display: flex; gap: 12px; align-items: center; max-width: 290px; padding: 14px 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--shadow-md); }
-.float-card img { width: 44px; height: 44px; flex: none; }
-.float-card b { display: block; color: var(--navy); font-size: 0.95rem; line-height: 1.3; }
-.float-card span { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.35; }
-@media (max-width: 959px) { .hero-visual { width: min(100%, 360px); } .float-card { left: 12px; right: 12px; bottom: 12px; max-width: none; } }
+.hero { position: relative; padding: clamp(36px, 6vw, 88px) 0 clamp(64px, 8vw, 112px); background: linear-gradient(180deg, #fff 0%, var(--paper) 100%); overflow: clip; }
+.hero-grid { display: grid; gap: clamp(48px, 6vw, 80px); align-items: center; }
+@media (min-width: 1000px) { .hero-grid { grid-template-columns: 1.15fr .85fr; } }
+.name { font-size: clamp(3rem, 7.4vw, 7.4rem); line-height: .9; letter-spacing: -.055em; }
+.name .line { display: block; }
+.name .line:nth-child(2) { color: var(--green-dk); }
+.role { margin-top: 26px; font-size: clamp(1.05rem, 1.5vw, 1.25rem); font-weight: 600; color: var(--navy-3); }
+.lead { margin-top: 14px; font-size: clamp(1.15rem, 1.7vw, 1.4rem); font-weight: 400; color: var(--muted); max-width: 34rem; line-height: 1.6; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+@media (max-width: 559px) { .actions .btn { width: 100%; } }
+.cred-row { list-style: none; display: grid; gap: 14px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+@media (min-width: 720px) { .cred-row { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+.cred-row li { display: flex; gap: 10px; align-items: baseline; font-size: .95rem; line-height: 1.45; color: var(--ink); }
+.cred-row .dia { width: 8px; height: 8px; transform: translateY(-1px) rotate(45deg); }
+.hero-art { position: relative; width: min(100%, 440px); aspect-ratio: 4 / 5; justify-self: center; }
+@media (min-width: 1000px) { .hero-art { justify-self: end; } }
+.hero-art .arrow { position: absolute; z-index: 0; width: 150%; max-width: none; left: -20%; bottom: -10%; }
+.hero-art .portrait { position: absolute; inset: 0; z-index: 1; border-radius: 26px; overflow: hidden; background: var(--navy); box-shadow: 0 40px 70px -40px rgba(2,29,62,.55); }
+.hero-art .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+.hero-art .facets { position: absolute; z-index: 2; width: 21%; left: -9%; bottom: 7%; }
+.hero-art .gem { position: absolute; z-index: 2; width: 34px; right: -12px; bottom: -12px; }
 
-/* Credentials */
-.creds { padding: 0 0 var(--space-section); background: var(--bg); }
-.cred-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 640px) { .cred-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1040px) { .cred-grid { grid-template-columns: repeat(4, 1fr); } }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--shadow-sm); padding: 24px; }
-.icon-chip { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #e9f6ef; color: var(--green-dk); }
-.icon-chip .ic { width: 24px; height: 24px; }
-.icon-chip.navy { background: #e8eef7; color: var(--navy); }
-.icon-chip.gold { background: #f8f0dc; color: #7a5a14; }
-.cred-grid h3 { margin-top: 16px; font-size: 1.1rem; }
-.cred-grid p { margin-top: 4px; color: var(--muted); }
-.career { margin-top: 24px; color: var(--muted); text-align: center; }
-.career b { color: var(--navy); }
+/* Drifting band */
+.reel { background: var(--navy); color: #fff; overflow: hidden; padding: clamp(22px, 3vw, 36px) 0; }
+.reel-track { display: flex; width: max-content; align-items: center; gap: clamp(28px, 3.5vw, 56px); animation: reel 42s linear infinite; }
+.reel-track span { font-size: clamp(2.2rem, 6vw, 5.4rem); font-weight: 900; letter-spacing: -.04em; line-height: 1; white-space: nowrap; }
+.reel-track span.o { color: transparent; -webkit-text-stroke: 1.5px var(--gold-lt); }
+.reel-track .dia { width: clamp(12px, 1.4vw, 20px); height: clamp(12px, 1.4vw, 20px); }
+.reel:hover .reel-track { animation-play-state: paused; }
+@keyframes reel { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .reel-track { animation: none; } }
 
-/* CBH */
-.cbh { background: #fff; }
-.cbh-top { display: grid; gap: 28px; align-items: end; margin-bottom: clamp(36px, 5vw, 56px); }
-@media (min-width: 960px) { .cbh-top { grid-template-columns: 1fr 1fr; } }
-.cbh-logo { width: min(100%, 360px); }
-.cbh-top p { color: var(--muted); font-size: 1.1rem; max-width: 36rem; }
-.cbh-top .tagline { margin-top: 18px; color: var(--navy); font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.02em; }
-.cbh-top .tagline span { color: var(--green-dk); }
-.verbs { list-style: none; display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 640px) { .verbs { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1040px) { .verbs { grid-template-columns: repeat(5, 1fr); } }
-.verbs li { display: flex; flex-direction: column; gap: 12px; }
-.verbs h3 { font-size: 1.3rem; }
-.verbs p { color: var(--muted); }
+/* Hook */
+.hook { padding: clamp(96px, 12vw, 176px) 0; }
+.statement { font-size: clamp(2.3rem, 5.8vw, 5.4rem); line-height: 1.02; letter-spacing: -.045em; max-width: 15ch; }
+.statement .w { display: inline-block; }
+.hook-sub { margin-top: clamp(28px, 4vw, 44px); max-width: 38rem; font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--muted); }
+.hook-cite { display: flex; align-items: center; gap: 12px; margin-top: 22px; font-weight: 700; color: var(--gold-deep); font-size: .95rem; }
 
-/* Signature session */
-.sig { background: var(--navy); color: var(--on-navy); }
-.sig h2, .sig h3 { color: #fff; }
-.sig .sec-head .tag { color: var(--gold-lt); }
-.sig .sec-head p { color: var(--on-navy-muted); }
-.sig-top { display: grid; gap: clamp(36px, 5vw, 64px); align-items: start; }
-@media (min-width: 960px) { .sig-top { grid-template-columns: 1fr 1fr; } }
-.sig-top .sec-head { margin-bottom: 0; }
-.sig-top .btn { margin-top: 28px; }
-.seasons { list-style: none; position: relative; display: grid; gap: 14px; }
-.seasons::before { content: ""; position: absolute; left: 23px; top: 24px; bottom: 24px; width: 2px; background: var(--line-navy); }
-.seasons li { position: relative; display: flex; align-items: center; gap: 18px; padding: 14px 18px 14px 0; }
-.seasons .dot { position: relative; z-index: 1; display: grid; place-items: center; width: 48px; height: 48px; flex: none; border-radius: 50%; font-weight: 800; font-variant-numeric: tabular-nums; background: var(--c); color: var(--t, #fff); box-shadow: 0 0 0 4px var(--navy); }
-.seasons b { display: block; font-size: 1.2rem; color: #fff; }
-.seasons small { display: block; color: var(--on-navy-muted); font-size: 1rem; }
-.seasons-note { margin-bottom: 18px; color: var(--on-navy-muted); }
-.sig-cards { display: grid; gap: 16px; margin-top: clamp(40px, 5vw, 64px); grid-template-columns: 1fr; }
-@media (min-width: 900px) { .sig-cards { grid-template-columns: repeat(3, 1fr); } }
-.card-navy { background: var(--navy-2); border: 1px solid var(--line-navy); border-radius: var(--r-md); padding: 26px; }
-.card-navy h3 { margin: 14px 0 12px; }
-.card-navy p { color: var(--on-navy-muted); }
-.card-navy .icon-chip { background: rgba(226,196,127,.14); color: var(--gold-lt); }
-.ticks { list-style: none; display: grid; gap: 10px; margin-top: 12px; }
-.ticks li { display: flex; gap: 10px; align-items: flex-start; color: var(--on-navy); }
-.ticks .ic { color: var(--gold-lt); margin-top: 4px; width: 18px; height: 18px; }
-.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
-.chips li { padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid var(--line-navy); font-size: 0.92rem; font-weight: 600; }
-.inv { list-style: none; display: grid; gap: 10px; margin-top: 12px; }
-.inv li { padding: 12px 14px; border-radius: var(--r-sm); background: rgba(255,255,255,.05); border: 1px solid var(--line-navy); }
-.inv b { display: block; color: #fff; }
-.inv span { color: var(--on-navy-muted); font-size: 0.95rem; }
-.reflect { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between; margin-top: clamp(32px, 4vw, 48px); padding: 28px; border-radius: var(--r-md); background: var(--navy-3); }
-.reflect p { font-size: 1.15rem; font-weight: 600; color: #fff; max-width: 44rem; line-height: 1.5; }
+/* The challenge */
+.challenge { background: var(--paper); padding: clamp(80px, 10vw, 144px) 0; }
+.ch-grid { display: grid; gap: clamp(36px, 5vw, 72px); }
+@media (min-width: 1000px) { .ch-grid { grid-template-columns: .8fr 1.2fr; align-items: start; } .ch-head { position: sticky; top: calc(var(--head) + 48px); } }
+.ch-head p { margin-top: 18px; color: var(--muted); font-size: 1.15rem; max-width: 26rem; }
+.ch-list { list-style: none; }
+.ch-list li { display: flex; gap: clamp(16px, 2vw, 26px); align-items: baseline; padding: clamp(20px, 2.6vw, 32px) 0; border-bottom: 1px solid var(--line);
+  font-size: clamp(1.55rem, 3.3vw, 2.9rem); font-weight: 800; line-height: 1.12; letter-spacing: -.03em; color: var(--navy); }
+.ch-list li:first-child { border-top: 1px solid var(--line); }
+.ch-list .dia { width: 14px; height: 14px; transform: translateY(-4px) rotate(45deg); }
+.ch-close { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: space-between; }
+.ch-close p { font-size: 1.15rem; color: var(--ink); max-width: 34rem; }
 
-/* Modules */
-.mod-grid { list-style: none; display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 720px) { .mod-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1040px) { .mod-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1040px) { .mod-grid li:last-child:nth-child(3n+1) { grid-column: 1 / -1; display: grid; grid-template-columns: 44px 1fr 2fr; gap: 12px 24px; align-items: start; } }
-@media (min-width: 720px) and (max-width: 1039px) { .mod-grid li:last-child:nth-child(2n+1) { grid-column: 1 / -1; } }
-.mod-grid .card { display: flex; flex-direction: column; gap: 12px; }
-.mod-num { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--navy); color: #fff; font-weight: 800; font-variant-numeric: tabular-nums; }
-.mod-grid p { color: var(--muted); }
+/* Seasons shelf */
+.seasons { position: relative; }
+.shelf { overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.shelf.pinned { overflow: hidden; scroll-snap-type: none; }
+.shelf-track { display: flex; width: max-content; }
+.panel { flex: 0 0 auto; width: 84vw; min-height: 480px; scroll-snap-align: start; padding: clamp(32px, 5vw, 72px) clamp(24px, 4vw, 64px); display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+@media (min-width: 720px) { .panel { width: 46vw; } }
+@media (min-width: 1024px) { .panel { width: 34vw; height: calc(100vh - var(--head)); min-height: 560px; max-height: 860px; } .panel-intro { width: 50vw; } }
+.panel-intro { background: var(--navy); color: #fff; width: 92vw; }
+@media (min-width: 720px) { .panel-intro { width: 66vw; } }
+.panel-intro h2 { color: #fff; }
+.panel-intro .sub { margin-top: 12px; font-size: 1.1rem; font-weight: 700; color: var(--gold-lt); }
+.panel-intro p.body { margin-top: 18px; color: var(--on-navy-m); max-width: 34rem; }
+.panel-intro .nature { font-size: clamp(1.2rem, 1.8vw, 1.5rem); font-weight: 700; color: #fff; line-height: 1.4; max-width: 30rem; }
+.panel-intro .hint { display: flex; align-items: center; gap: 10px; color: var(--on-navy-m); font-size: .95rem; }
+.season { background: var(--bg); color: var(--fg); }
+.season .num { font-size: clamp(6rem, 13vw, 12rem); font-weight: 900; line-height: .8; letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 2px var(--fg); opacity: .55; }
+.season h3 { color: var(--fg); font-size: clamp(2.2rem, 3.5vw, 4rem); font-weight: 900; letter-spacing: -.045em; line-height: .95; }
+.season .of { margin-top: 14px; font-weight: 700; font-size: 1rem; }
+.season .sub { margin-top: 6px; font-size: 1.15rem; font-weight: 600; }
+
+/* Session detail */
+.session { padding: clamp(80px, 10vw, 136px) 0; }
+.ss-grid { display: grid; gap: clamp(48px, 6vw, 88px); }
+@media (min-width: 1000px) { .ss-grid { grid-template-columns: 1fr 1fr; } }
+.ss-grid h3 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); margin-bottom: 18px; }
+.ss-grid p { color: var(--on-navy-m); }
+.gems { list-style: none; display: grid; gap: 14px; margin-top: 16px; }
+.gems li { display: flex; gap: 14px; align-items: baseline; color: #fff; font-size: 1.05rem; }
+.gems .dia { width: 9px; height: 9px; transform: translateY(-1px) rotate(45deg); }
+.persona { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 22px 0 26px; }
+@media (min-width: 560px) { .persona { grid-template-columns: repeat(3, 1fr); } }
+.persona li { display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 16px; background: var(--navy-2); border: 1px solid var(--line-navy); font-weight: 800; font-size: 1.1rem; }
+.persona .ic { width: 28px; height: 28px; color: var(--gold-lt); }
+.investor { margin-top: clamp(64px, 8vw, 104px); }
+.investor h3 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); }
+.spectrum { list-style: none; position: relative; display: grid; gap: 22px; margin-top: 34px; }
+@media (min-width: 760px) { .spectrum { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+.spectrum-line { display: none; }
+@media (min-width: 760px) { .spectrum-line { display: block; position: absolute; left: 22px; right: 22px; top: 21px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--green), var(--gold) 55%, var(--gold-lt)); } }
+.spectrum li { position: relative; display: flex; gap: 16px; align-items: flex-start; }
+@media (min-width: 760px) { .spectrum li { flex-direction: column; } }
+.spectrum .node { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 50%; background: var(--navy); border: 3px solid var(--c); font-weight: 900; color: #fff; z-index: 1; }
+.spectrum b { display: block; font-size: 1.25rem; font-weight: 800; }
+.spectrum span.nick { display: block; color: var(--on-navy-m); }
+.reflect { margin-top: clamp(64px, 8vw, 104px); display: grid; gap: 28px; align-items: center; padding: clamp(28px, 4vw, 48px); border-radius: 24px; background: var(--navy-2); border: 1px solid var(--line-navy); }
+@media (min-width: 900px) { .reflect { grid-template-columns: 1fr auto; } }
+.reflect p { font-size: clamp(1.25rem, 2vw, 1.65rem); font-weight: 700; line-height: 1.4; color: #fff; }
+
+/* CBH staircase */
+.cbh { padding: clamp(88px, 11vw, 152px) 0; }
+.cbh-head { display: grid; gap: 32px; align-items: end; margin-bottom: clamp(48px, 6vw, 80px); }
+@media (min-width: 1000px) { .cbh-head { grid-template-columns: 1fr 1fr; } }
+.cbh-head h2 { line-height: 0; }
+.cbh-logo { width: min(100%, 400px); }
+.tagline { font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 900; line-height: 1.08; letter-spacing: -.035em; color: var(--navy); }
+.tagline span { color: var(--green-dk); }
+.cbh-head p.founded { margin-top: 14px; color: var(--muted); font-size: 1.1rem; }
+.stairs { list-style: none; display: grid; gap: 12px; }
+@media (min-width: 1000px) { .stairs { grid-template-columns: repeat(5, 1fr); align-items: end; gap: 14px; } }
+.stairs li { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 26px 24px; border-radius: 20px; background: var(--bg); color: var(--fg); }
+@media (min-width: 1000px) { .stairs li { min-height: calc(230px + var(--k) * 62px); } }
+.stairs .verb { font-size: clamp(1.8rem, 2.3vw, 2.3rem); font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+.stairs .top { display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 14px; }
+.stairs .top .ic { width: 30px; height: 30px; opacity: .85; }
+.stairs p { font-size: 1rem; line-height: 1.55; }
+
+/* Sticky sheets */
+.training { background: var(--paper); padding: clamp(88px, 11vw, 152px) 0; }
+.tr-grid { display: grid; gap: clamp(40px, 5vw, 72px); }
+@media (min-width: 1000px) { .tr-grid { grid-template-columns: .8fr 1.2fr; align-items: start; } .tr-head { position: sticky; top: calc(var(--head) + 48px); } }
+.tr-head p { margin-top: 18px; color: var(--muted); font-size: 1.15rem; max-width: 28rem; }
+.tr-head .btn { margin-top: 28px; }
+.sheets { list-style: none; }
+.sheet { position: sticky; top: calc(var(--head) + 20px + var(--i) * 12px); display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 3vw, 36px); align-items: start;
+  min-height: 240px; margin-bottom: 26px; padding: clamp(26px, 3.6vw, 44px); border-radius: 24px; background: var(--bg, #fff); border: 1px solid var(--line);
+  box-shadow: 0 -18px 40px -30px rgba(2,29,62,.45); }
+.sheet-num { font-size: clamp(3rem, 6vw, 5.2rem); font-weight: 900; line-height: .85; letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1.5px var(--navy); }
+.sheet h3 { font-size: clamp(1.35rem, 2.1vw, 1.8rem); }
+.sheet p { margin-top: 12px; color: var(--muted); max-width: 36rem; }
 
 /* Audiences */
-.aud-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 640px) { .aud-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1040px) { .aud-grid { grid-template-columns: repeat(3, 1fr); } }
-.aud-grid .card { display: flex; gap: 16px; align-items: flex-start; }
-.aud-grid h3 { font-size: 1.1rem; }
-.aud-grid p { color: var(--muted); margin-top: 4px; }
+.aud { padding: clamp(88px, 11vw, 152px) 0; }
+.sec-head { max-width: 46rem; margin-bottom: clamp(40px, 5vw, 64px); }
+.sec-head p { margin-top: 18px; color: var(--muted); font-size: 1.15rem; }
+.aud-list { list-style: none; display: grid; column-gap: clamp(32px, 5vw, 72px); }
+@media (min-width: 860px) { .aud-list { grid-template-columns: 1fr 1fr; } }
+.aud-list li { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.aud-chip { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 18px; background: var(--paper); color: var(--navy); }
+.aud-chip .ic { width: 28px; height: 28px; }
+.aud-list h3 { font-size: 1.3rem; }
+.aud-list p { margin-top: 6px; color: var(--muted); }
 
-/* Process */
-.process { background: #fff; }
-.steps { list-style: none; display: grid; gap: 28px; counter-reset: step; }
-@media (min-width: 900px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
-.steps li { position: relative; counter-increment: step; }
-.steps .num { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--cta); color: #fff; font-weight: 800; font-size: 1.1rem; position: relative; z-index: 1; }
-@media (min-width: 900px) { .steps li:not(:last-child)::after { content: ""; position: absolute; top: 26px; left: 64px; right: -12px; height: 2px; background: var(--border); } }
-.steps h3 { margin-top: 18px; font-size: 1.15rem; }
-.steps p { margin-top: 8px; color: var(--muted); }
-.principle { display: flex; gap: 16px; align-items: center; margin-top: clamp(40px, 5vw, 56px); padding: 24px 28px; border-radius: var(--r-md); background: #e9f6ef; color: var(--navy); font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 700; line-height: 1.4; }
-.principle .ic { width: 32px; height: 32px; color: var(--green-dk); }
+/* How a session runs */
+.how { background: var(--paper); padding: clamp(88px, 11vw, 152px) 0; }
+.how-steps { list-style: none; display: grid; gap: 36px; }
+@media (min-width: 760px) { .how-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .how-steps { grid-template-columns: repeat(4, 1fr); gap: 28px; } }
+.how-steps .n { font-size: clamp(4.5rem, 7vw, 6.5rem); font-weight: 900; line-height: .85; letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 1.5px var(--gold-deep); }
+.how-steps h3 { margin-top: 20px; font-size: 1.3rem; }
+.how-steps p { margin-top: 10px; color: var(--muted); }
+.principle { margin-top: clamp(56px, 7vw, 88px); display: flex; gap: 20px; align-items: center; font-size: clamp(1.4rem, 2.6vw, 2.2rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.2; color: var(--navy); max-width: 46rem; }
+.principle .dia { width: 18px; height: 18px; }
 
 /* About */
-.about-grid { display: grid; gap: clamp(36px, 5vw, 64px); align-items: start; }
-@media (min-width: 960px) { .about-grid { grid-template-columns: 0.8fr 1.2fr; } }
-.about-photo { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-md); max-width: 420px; }
-.about-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 14%; }
-.quote { margin-top: 20px; padding: 22px 24px; border-radius: var(--r-md); background: var(--navy); color: #fff; font-size: 1.15rem; font-weight: 700; line-height: 1.45; max-width: 420px; }
-.quote cite { display: block; margin-top: 10px; font-size: 0.9rem; font-style: normal; font-weight: 500; color: var(--on-navy-muted); }
-.about-copy h2 { margin-bottom: 18px; }
-.about-copy p { color: var(--muted); max-width: 40rem; }
-.about-copy p + p { margin-top: 14px; }
-.about-lists { display: grid; gap: 16px; margin-top: 32px; }
-@media (min-width: 720px) { .about-lists { grid-template-columns: 1fr 1fr; } }
-.about-lists h3 { font-size: 1.1rem; margin-bottom: 12px; }
-.checks { list-style: none; display: grid; gap: 12px; }
-.checks li { display: flex; gap: 10px; align-items: flex-start; }
-.checks .ic { color: var(--green); margin-top: 4px; width: 18px; height: 18px; }
-.checks b { display: block; color: var(--navy); }
-.checks span { color: var(--muted); }
+.about { padding: clamp(88px, 11vw, 152px) 0; }
+.about-grid { display: grid; gap: clamp(48px, 6vw, 88px); }
+@media (min-width: 1000px) { .about-grid { grid-template-columns: 1.1fr .9fr; align-items: start; } }
+.about-main p.dropcap { margin-top: 24px; font-size: 1.15rem; color: var(--ink); max-width: 40rem; }
+.about-main p.dropcap::first-letter { float: left; font-size: 4.6em; line-height: .82; font-weight: 900; color: var(--green-dk); margin: .04em .1em 0 0; }
+.mission { padding: clamp(28px, 4vw, 44px); border-radius: 26px; background: var(--navy); color: #fff; }
+.mission p { font-size: clamp(1.35rem, 2.2vw, 1.85rem); font-weight: 800; line-height: 1.3; letter-spacing: -.02em; }
+.mission cite { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-style: normal; font-weight: 700; color: var(--gold-lt); }
+.ledger { display: grid; gap: clamp(32px, 4vw, 56px); margin-top: clamp(48px, 6vw, 72px); }
+@media (min-width: 860px) { .ledger { grid-template-columns: 1fr 1fr; } }
+.ledger h3 { margin-bottom: 14px; }
+.ledger ul { list-style: none; }
+.ledger li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.ledger li:first-child { border-top: 1px solid var(--line); }
+.ledger .dia { width: 9px; height: 9px; margin-top: .55em; }
+.ledger b { display: block; color: var(--navy); }
+.ledger span.d { color: var(--muted); }
 
 /* Speaker kit */
-.kit { background: #fff; }
-.kit-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 960px) { .kit-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
-.kit-grid .card { display: flex; flex-direction: column; gap: 12px; }
-.kit-grid p { color: var(--muted); }
+.kit { background: var(--paper); padding: clamp(80px, 10vw, 128px) 0; }
+.kit-grid { display: grid; gap: 16px; }
+@media (min-width: 1000px) { .kit-grid { grid-template-columns: 1.5fr 1fr; } }
+.kit-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 14px; }
+.kit-card p { color: var(--muted); }
 .bio-text { color: var(--ink) !important; }
-.kit-grid .thumb { width: 88px; height: 110px; object-fit: cover; object-position: 50% 15%; border-radius: var(--r-sm); }
-.kit-grid .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; align-items: center; }
-.kit-grid .btn { min-height: 44px; padding: 10px 16px; font-size: 0.92rem; }
-.status { font-size: 0.9rem; color: var(--cta); min-height: 1.4em; }
+.kit-side { display: grid; gap: 16px; }
+.kit-row { display: flex; gap: 18px; align-items: center; }
+.kit-row img { width: 84px; height: 105px; object-fit: cover; object-position: 50% 14%; border-radius: 12px; flex: none; }
+.kit-card .btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: auto; }
+.kit-card .btn { min-height: 46px; padding: 10px 18px; font-size: .95rem; }
+.status { font-size: .95rem; color: var(--cta); min-height: 1.4em; }
 
-/* Contact */
-.contact { background: var(--navy); color: #fff; }
-.contact h2 { color: #fff; }
-.contact-grid { display: grid; gap: clamp(36px, 5vw, 64px); align-items: start; }
-@media (min-width: 960px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
-.contact .lead { margin-top: 14px; color: var(--on-navy-muted); font-size: 1.1rem; max-width: 34rem; }
-.contact-list { list-style: none; display: grid; gap: 12px; margin-top: 28px; }
-.contact-list a, .contact-list div.item { display: flex; gap: 14px; align-items: center; min-height: 64px; padding: 12px 16px; border-radius: var(--r-md); background: var(--navy-2); border: 1px solid var(--line-navy); color: #fff; text-decoration: none; transition: background-color .2s ease, border-color .2s ease; }
-.contact-list a:hover { background: var(--navy-3); border-color: rgba(255,255,255,.35); }
-.contact-list .icon-chip { background: rgba(226,196,127,.14); color: var(--gold-lt); flex: none; }
-.contact-list small { display: block; color: var(--on-navy-muted); font-size: 0.85rem; }
-.contact-list b { font-size: 1.05rem; }
-.contact .side-actions { margin-top: 20px; }
-.form-card { background: #fff; color: var(--ink); border-radius: var(--r-lg); padding: clamp(22px, 4vw, 36px); box-shadow: 0 24px 48px -16px rgba(0,0,0,.4); }
-.form-card h3 { font-size: 1.4rem; color: var(--navy); }
-.form-card .hint { color: var(--muted); margin: 6px 0 22px; }
+/* Climax and contact */
+.cta { position: relative; padding: clamp(96px, 12vw, 176px) 0 clamp(80px, 10vw, 128px); overflow: clip; }
+.climax { font-size: clamp(2.8rem, 8.2vw, 8rem); line-height: .92; letter-spacing: -.055em; max-width: 12ch; }
+.climax-sub { margin-top: 28px; max-width: 40rem; font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--on-navy-m); }
+.cta .facets { position: absolute; width: clamp(90px, 10vw, 150px); right: clamp(16px, 5vw, 80px); top: clamp(40px, 6vw, 96px); opacity: .9; }
+.cta-grid { display: grid; gap: clamp(40px, 5vw, 72px); margin-top: clamp(56px, 7vw, 96px); }
+@media (min-width: 1000px) { .cta-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.big-links { list-style: none; display: grid; }
+.big-links a, .big-links .item { display: grid; gap: 4px; padding: 22px 0; border-bottom: 1px solid var(--line-navy); text-decoration: none; color: #fff; }
+.big-links li:first-child > * { border-top: 1px solid var(--line-navy); }
+.big-links small { font-size: .95rem; font-weight: 600; color: var(--gold-lt); }
+.big-links b { font-size: clamp(1.6rem, 3.2vw, 2.6rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.1; overflow-wrap: anywhere; }
+.big-links a b { transition: color .2s ease; }
+.big-links a:hover b { color: var(--gold-lt); }
+.cta .vcf { margin-top: 26px; }
+.form-card { background: #fff; color: var(--ink); border-radius: 28px; padding: clamp(24px, 4vw, 40px); box-shadow: 0 40px 80px -40px rgba(0,0,0,.6); }
+.form-card h3 { font-size: 1.6rem; color: var(--navy); }
+.form-card .hint { color: var(--muted); margin: 8px 0 24px; }
 .field { display: grid; gap: 6px; margin-bottom: 16px; }
-.field label { font-size: 0.92rem; font-weight: 700; color: var(--navy); }
+.field label { font-size: .95rem; font-weight: 700; color: var(--navy); }
 .field label .opt { font-weight: 400; color: var(--muted); }
-.field input, .field select, .field textarea { width: 100%; min-height: 48px; padding: 12px 14px; border-radius: var(--r-sm); border: 1px solid #c3ccd8; background: #fff; color: var(--ink); font: 400 1rem/1.5 'Montserrat', sans-serif; transition: border-color .2s ease, box-shadow .2s ease; }
-.field textarea { min-height: 120px; resize: vertical; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(20,154,94,.25); }
-.field .err { font-size: 0.88rem; color: #b42318; display: none; }
+.field input, .field select, .field textarea { width: 100%; min-height: 52px; padding: 13px 16px; border-radius: 14px; border: 1px solid #c3ccd8; background: #fff; color: var(--ink); font: 400 1rem/1.5 'Montserrat', sans-serif; transition: border-color .2s ease, box-shadow .2s ease; }
+.field textarea { min-height: 128px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 4px rgba(20,154,94,.22); }
+.field .err { font-size: .9rem; color: #b42318; display: none; }
 .field.invalid .err { display: block; }
 .field.invalid input, .field.invalid textarea { border-color: #b42318; }
-.form-card .btn { width: 100%; margin-top: 4px; }
+.form-card .btn { width: 100%; margin-top: 6px; }
 .two { display: grid; gap: 0 16px; }
 @media (min-width: 560px) { .two { grid-template-columns: 1fr 1fr; } }
 
 /* Footer */
-footer { padding: 36px 0; background: #fff; border-top: 1px solid var(--border); }
-footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; font-size: 0.92rem; color: var(--muted); }
-footer img { height: 52px; width: auto; }
+footer { padding: 40px 0; background: #fff; }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; color: var(--muted); font-size: .95rem; }
+footer img { height: 54px; width: auto; }
 footer a { color: var(--navy); font-weight: 700; display: inline-flex; align-items: center; min-height: 44px; }
 
-/* Motion: content is visible without JavaScript; the stagger is an enhancement */
-.js-motion .stagger > * { opacity: 0; transform: translateY(16px) scale(.98); }
-.js-motion .stagger.in > * { opacity: 1; transform: none; transition: opacity .4s ease, transform .4s var(--ease); transition-delay: calc(var(--i, 0) * 60ms); }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .contact-list a { transition: none; } .btn:active { transform: none; } }
+/* Phone call bar */
+.callbar { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 45; display: none; gap: 10px; padding: 10px; border-radius: 999px; background: var(--navy); box-shadow: 0 18px 40px -18px rgba(2,29,62,.7); transform: translateY(140%); visibility: hidden; transition: transform .35s var(--ease), visibility 0s linear .35s; }
+.callbar .btn { flex: 1; min-height: 48px; padding: 10px 14px; font-size: .95rem; }
+.callbar.show { transform: none; visibility: visible; transition: transform .35s var(--ease); }
+@media (max-width: 719px) { .callbar { display: flex; } }
+@media (prefers-reduced-motion: reduce) { .callbar, .btn { transition: none; } .btn:active { transform: none; } }
 
 @media print {
   @page { margin: 14mm; }
-  body { font-size: 10.5pt; background: #fff; }
-  .site-header, .skip, .hero-actions, .kit, .form-card, .side-actions, .menu-btn, footer .top, .reflect .btn, .float-card { display: none !important; }
-  section { padding: 16px 0; }
-  .sig, .contact { background: #fff !important; color: #111 !important; }
-  .sig h2, .sig h3, .contact h2, .seasons b, .seasons small, .card-navy p, .ticks li, .inv b, .inv span, .reflect p, .contact-list a, .contact-list small { color: #111 !important; }
-  .card-navy, .reflect, .contact-list a, .contact-list div.item { background: #fff !important; border: 1px solid #ccc !important; }
-  .js-motion .stagger > * { opacity: 1 !important; transform: none !important; }
-  .hero-visual { width: 180px; }
+  body { font-size: 10.5pt; }
+  .site-header, .skip, .actions, .reel, .callbar, .kit, .form-card, .vcf, .reflect .btn, .ch-close .btn, .tr-head .btn, .hero-art .arrow { display: none !important; }
+  .navy, .panel-intro, .season, .mission { background: #fff !important; color: #111 !important; }
+  .navy h2, .navy h3, .season h3, .panel-intro h2, .gems li, .persona li, .reflect p, .big-links b, .mission p, .climax-sub, .ss-grid p { color: #111 !important; }
+  .shelf { overflow: visible; } .shelf-track { display: block; width: auto; } .panel { width: auto !important; height: auto !important; min-height: 0; padding: 12px 0; }
+  .season .num { display: none; } .sheet { position: static; box-shadow: none; }
+  section { padding: 18px 0 !important; }
 }
 </style>
 </head>
@@ -346,8 +391,8 @@ footer a { color: var(--navy); font-weight: 700; display: inline-flex; align-ite
     </a>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="nav-list">
-        <li><a href="#cbh">CBH Advisory</a></li>
         <li><a href="#signature">Signature session</a></li>
+        <li><a href="#cbh">CBH Advisory</a></li>
         <li><a href="#training">Training</a></li>
         <li><a href="#audiences">Who she trains</a></li>
         <li><a href="#about">About</a></li>
@@ -356,246 +401,284 @@ footer a { color: var(--navy); font-weight: 700; display: inline-flex; align-ite
     </nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
+  <span class="progress" aria-hidden="true"></span>
 </header>
 
 <main id="main">
 
 <section class="hero" id="top">
   <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="badge"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,136a8,8,0,0,1-8,8H72a8,8,0,0,1,0-16h48A8,8,0,0,1,128,136Zm-8-40H72a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Zm112,65.47V224A8,8,0,0,1,220,231l-24-13.74L172,231A8,8,0,0,1,160,224V200H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216a16,16,0,0,1,16,16V86.53a51.88,51.88,0,0,1,0,74.94ZM160,184V161.47A52,52,0,0,1,216,76V56H40V184Zm56-12a51.88,51.88,0,0,1-40,0v38.22l16-9.16a8,8,0,0,1,7.94,0l16,9.16Zm16-48a36,36,0,1,0-36,36A36,36,0,0,0,232,124Z"/></svg>Bank of Uganda accredited Financial Literacy Trainer</p>
-      <h1>Catherine Brenda Agabirwe</h1>
-      <p class="hero-sub">Financial Literacy Trainer and Financial Wellness Advocate</p>
-      <p class="hero-lead">She trains employers, SACCOs, schools, families and individuals to earn, manage, save, protect and grow their money.</p>
-      <div class="hero-actions">
+    <div class="hero-text">
+      <h1 class="name"><span class="line">Catherine</span><span class="line">Brenda</span><span class="line">Agabirwe</span></h1>
+      <p class="role">Financial Literacy Trainer and Financial Wellness Advocate</p>
+      <p class="lead">She trains employers, SACCOs, schools, families and individuals to earn, manage, save, protect and grow their money.</p>
+      <div class="actions">
         <a class="btn btn-primary" href="tel:+256777721148"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg>Call 0777 721 148</a>
-        <a class="btn btn-outline" href="#contact">Plan a training</a>
+        <a class="btn btn-line" href="#contact">Plan a training</a>
       </div>
-      <ul class="hero-facts">
-        <li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Eight years in life insurance sales and financial advisory</span></li>
-        <li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Founder of CBH Advisory</span></li>
-        <li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Based in Kampala, Uganda</span></li>
+      <ul class="cred-row">
+        <li><i class="dia" aria-hidden="true"></i><span>Bank of Uganda accredited Financial Literacy Trainer</span></li>
+        <li><i class="dia" aria-hidden="true"></i><span>Founder of CBH Advisory, Kampala</span></li>
+        <li><i class="dia" aria-hidden="true"></i><span>Eight years in life insurance sales and financial advisory</span></li>
       </ul>
     </div>
-    <div class="hero-visual">
-      <svg class="gem" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 0 30 15H15z" fill="#e2c47f"/><path d="M30 15 15 30V15z" fill="#c9a55a"/><path d="M15 30 0 15h15z" fill="#e2c47f"/><path d="M0 15 15 0v15z" fill="#c9a55a"/></svg>
-      <div class="portrait-card"><img src="images/catherine-brenda-agabirwe.webp" width="600" height="900" alt="Catherine Brenda Agabirwe" fetchpriority="high"></div>
-      <div class="float-card"><img src="images/brand/cbh-mark.svg" width="44" height="44" alt=""><div><b>CBH Advisory</b><span>Master your money, own your future</span></div></div>
+    <div class="hero-art">
+      <svg class="arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path fill="#149a5e" d="M24 247 185.1 58 156.3 45 244 9Z"/><path fill="#021d3e" d="M24 247 199.8 71.6 215 99.3 244 9Z"/></svg>
+      <figure class="portrait"><img src="images/catherine-brenda-agabirwe.webp" width="600" height="900" alt="Catherine Brenda Agabirwe" fetchpriority="high"></figure>
+      <svg class="facets" viewBox="10 55 66 150" aria-hidden="true" focusable="false"><path fill="#0b6b45" d="M54.7 57 12 131 73.1 91Z"/><path fill="#021d3e" d="M73.1 91 12 131H50Z"/><path fill="#e2c47f" d="M12 131 53.1 202.1 54.4 200.5 50 131Z"/><path fill="#149a5e" d="M50 131 54.4 200.5 61.9 191.8 73.1 171Z"/></svg>
+      <svg class="gem" viewBox="0 0 30 30" aria-hidden="true" focusable="false"><path d="M15 0 30 15H15z" fill="#e2c47f"/><path d="M30 15 15 30V15z" fill="#c9a55a"/><path d="M15 30 0 15h15z" fill="#e2c47f"/><path d="M0 15 15 0v15z" fill="#c9a55a"/></svg>
     </div>
   </div>
 </section>
 
-<section class="creds" aria-labelledby="creds-h">
+<div class="reel">
+  <p class="sr">Earn, manage, save, protect and grow.</p>
+  <div class="reel-track" aria-hidden="true"><span>Earn</span><i class="dia" aria-hidden="true"></i><span class="o">Manage</span><i class="dia" aria-hidden="true"></i><span>Save</span><i class="dia" aria-hidden="true"></i><span class="o">Protect</span><i class="dia" aria-hidden="true"></i><span>Grow</span><i class="dia" aria-hidden="true"></i><span>Earn</span><i class="dia" aria-hidden="true"></i><span class="o">Manage</span><i class="dia" aria-hidden="true"></i><span>Save</span><i class="dia" aria-hidden="true"></i><span class="o">Protect</span><i class="dia" aria-hidden="true"></i><span>Grow</span><i class="dia" aria-hidden="true"></i></div>
+</div>
+
+<section class="hook" aria-labelledby="hook-h">
   <div class="wrap">
-    <h2 id="creds-h" class="sec-head center" style="font-size:1.25rem;margin-bottom:24px">Qualifications and experience</h2>
-    <div class="cred-grid stagger">
-      <div style="--i: 0" class="card"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,136a8,8,0,0,1-8,8H72a8,8,0,0,1,0-16h48A8,8,0,0,1,128,136Zm-8-40H72a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Zm112,65.47V224A8,8,0,0,1,220,231l-24-13.74L172,231A8,8,0,0,1,160,224V200H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216a16,16,0,0,1,16,16V86.53a51.88,51.88,0,0,1,0,74.94ZM160,184V161.47A52,52,0,0,1,216,76V56H40V184Zm56-12a51.88,51.88,0,0,1-40,0v38.22l16-9.16a8,8,0,0,1,7.94,0l16,9.16Zm16-48a36,36,0,1,0-36,36A36,36,0,0,0,232,124Z"/></svg></span><h3>Bank of Uganda</h3><p>Accredited Financial Literacy Trainer</p></div>
-      <div style="--i: 1" class="card"><span class="icon-chip navy"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"/></svg></span><h3>Eight years</h3><p>in life insurance sales and financial advisory</p></div>
-      <div style="--i: 2" class="card"><span class="icon-chip gold"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M251.76,88.94l-120-64a8,8,0,0,0-7.52,0l-120,64a8,8,0,0,0,0,14.12L32,117.87v48.42a15.91,15.91,0,0,0,4.06,10.65C49.16,191.53,78.51,216,128,216a130,130,0,0,0,48-8.76V240a8,8,0,0,0,16,0V199.51a115.63,115.63,0,0,0,27.94-22.57A15.91,15.91,0,0,0,224,166.29V117.87l27.76-14.81a8,8,0,0,0,0-14.12ZM128,200c-43.27,0-68.72-21.14-80-33.71V126.4l76.24,40.66a8,8,0,0,0,7.52,0L176,143.47v46.34C163.4,195.69,147.52,200,128,200Zm80-33.75a97.83,97.83,0,0,1-16,14.25V134.93l16-8.53ZM188,118.94l-.22-.13-56-29.87a8,8,0,0,0-7.52,14.12L171,128l-43,22.93L25,96,128,41.07,231,96Z"/></svg></span><h3>Bachelor of Commerce</h3><p>Makerere University Business School</p></div>
-      <div style="--i: 3" class="card"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg></span><h3>Certificate of Proficiency in Insurance</h3><p>Insurance Training College</p></div>
-    </div>
-    <p class="career">Career at financial services providers such as <b>Prudential Assurance Uganda Limited</b> and <b>Old Mutual Uganda</b>.</p>
+    <h2 class="statement" id="hook-h">Earning an income is only one part of financial wellbeing.</h2>
+    <p class="hook-sub">People also need the knowledge, habits and confidence to make thoughtful decisions about how that income is managed, protected and grown.</p>
+    <p class="hook-cite"><i class="dia" aria-hidden="true"></i>The belief behind Catherine’s work</p>
   </div>
 </section>
 
-<section id="cbh" class="cbh">
+<section class="challenge" id="challenge">
+  <div class="wrap ch-grid">
+    <div class="ch-head">
+      <h2>Common money challenges</h2>
+      <p>She recognizes common money challenges faced by individuals, families, companies and other groups.</p>
+    </div>
+    <div>
+      <ul class="ch-list">
+        <li><i class="dia" aria-hidden="true"></i><span>Living from salary to salary</span></li>
+        <li><i class="dia" aria-hidden="true"></i><span>Struggling with debt</span></li>
+        <li><i class="dia" aria-hidden="true"></i><span>Inadequate savings</span></li>
+        <li><i class="dia" aria-hidden="true"></i><span>Weak budgeting practices</span></li>
+        <li><i class="dia" aria-hidden="true"></i><span>Limited preparation for emergencies and retirement</span></li>
+      </ul>
+      <div class="ch-close">
+        <p>Her training is designed to address these everyday realities in a practical, engaging way.</p>
+        <a class="btn btn-primary" href="#contact">Plan a training</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seasons" id="signature" aria-labelledby="sig-h">
+  <div class="shelf" tabindex="0" aria-label="Her signature session and the five financial seasons">
+    <div class="shelf-track">
+      <article class="panel panel-intro">
+        <div>
+          <h2 id="sig-h">Beyond saving and borrowing</h2>
+          <p class="sub">Her signature session for SACCO members</p>
+          <p class="body">Her signature session builds a culture of financial wellness for SACCO members. The financial state of a SACCO roots from the individual state of its members, so understanding each member’s personal strengths and weaknesses is what bridges the gaps a SACCO faces.</p>
+        </div>
+        <p class="nature">Just as nature has different seasons, our financial lives also have seasons. Each season comes with different financial opportunities, responsibilities, challenges and priorities.</p>
+      </article>
+      <article class="panel season" style="--bg: var(--green); --fg: var(--navy)"><span class="num" aria-hidden="true">01</span><div><h3>Earning</h3><p class="of">Season 1 of 5</p></div></article>
+      <article class="panel season" style="--bg: var(--green-dk); --fg: #ffffff"><span class="num" aria-hidden="true">02</span><div><h3>Building</h3><p class="of">Season 2 of 5</p></div></article>
+      <article class="panel season" style="--bg: var(--gold); --fg: var(--navy)"><span class="num" aria-hidden="true">03</span><div><h3>Harvesting</h3><p class="of">Season 3 of 5</p></div></article>
+      <article class="panel season" style="--bg: var(--navy-3); --fg: #ffffff"><span class="num" aria-hidden="true">04</span><div><h3>Transition</h3><p class="of">Season 4 of 5</p></div></article>
+      <article class="panel season" style="--bg: var(--navy-2); --fg: #ffffff"><span class="num" aria-hidden="true">05</span><div><h3>Preservation</h3><p class=sub>Retirement and legacy</p><p class="of">Season 5 of 5</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="session navy" aria-label="Inside the signature session">
   <div class="wrap">
-    <div class="cbh-top">
+    <div class="ss-grid">
       <div>
-        <h2><img class="cbh-logo" src="images/brand/cbh-logo.svg" width="564" height="256" alt="CBH Advisory"></h2>
+        <h3>Why the seasons matter</h3>
+        <ul class="gems"><li><i class="dia" aria-hidden="true"></i><span>They help us prepare for financial challenges.</span></li><li><i class="dia" aria-hidden="true"></i><span>They help us avoid the mid-month financial crunch.</span></li><li><i class="dia" aria-hidden="true"></i><span>They encourage saving and investing during seasons of abundance.</span></li><li><i class="dia" aria-hidden="true"></i><span>They help us make better financial decisions.</span></li><li><i class="dia" aria-hidden="true"></i><span>They reduce financial stress and anxiety.</span></li><li><i class="dia" aria-hidden="true"></i><span>They help us manage debt responsibly.</span></li><li><i class="dia" aria-hidden="true"></i><span>They promote long-term financial stability.</span></li></ul>
       </div>
       <div>
-        <p>Catherine founded CBH Advisory. Her mission is to transform the way people earn, manage, save, protect, and grow their money, one individual at a time.</p>
+        <h3>What is your money personality?</h3>
+        <p>The attitudes, beliefs, emotions and behaviors behind how each person relates to money.</p>
+        <ul class="persona"><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z"/></svg><span>Spender</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M192,116a12,12,0,1,1-12-12A12,12,0,0,1,192,116ZM152,64H112a8,8,0,0,0,0,16h40a8,8,0,0,0,0-16Zm96,48v32a24,24,0,0,1-24,24h-2.36l-16.21,45.38A16,16,0,0,1,190.36,224H177.64a16,16,0,0,1-15.07-10.62L160.65,208h-57.3l-1.92,5.38A16,16,0,0,1,86.36,224H73.64a16,16,0,0,1-15.07-10.62L46,178.22a87.69,87.69,0,0,1-21.44-48.38A16,16,0,0,0,16,144a8,8,0,0,1-16,0,32,32,0,0,1,24.28-31A88.12,88.12,0,0,1,112,32H216a8,8,0,0,1,0,16H194.61a87.93,87.93,0,0,1,30.17,37c.43,1,.85,2,1.25,3A24,24,0,0,1,248,112Zm-16,0a8,8,0,0,0-8-8h-3.66a8,8,0,0,1-7.64-5.6A71.9,71.9,0,0,0,144,48H112A72,72,0,0,0,58.91,168.64a8,8,0,0,1,1.64,2.71L73.64,208H86.36l3.82-10.69A8,8,0,0,1,97.71,192h68.58a8,8,0,0,1,7.53,5.31L177.64,208h12.72l18.11-50.69A8,8,0,0,1,216,152h8a8,8,0,0,0,8-8Z"/></svg><span>Saver</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M230.33,141.06a24.34,24.34,0,0,0-18.61-4.77C230.5,117.33,240,98.48,240,80c0-26.47-21.29-48-47.46-48A47.58,47.58,0,0,0,156,48.75,47.58,47.58,0,0,0,119.46,32C93.29,32,72,53.53,72,80c0,11,3.24,21.69,10.06,33a31.87,31.87,0,0,0-14.75,8.4L44.69,144H16A16,16,0,0,0,0,160v40a16,16,0,0,0,16,16H120a7.93,7.93,0,0,0,1.94-.24l64-16a6.94,6.94,0,0,0,1.19-.4L226,182.82l.44-.2a24.6,24.6,0,0,0,3.93-41.56ZM119.46,48A31.15,31.15,0,0,1,148.6,67a8,8,0,0,0,14.8,0,31.15,31.15,0,0,1,29.14-19C209.59,48,224,62.65,224,80c0,19.51-15.79,41.58-45.66,63.9l-11.09,2.55A28,28,0,0,0,140,112H100.68C92.05,100.36,88,90.12,88,80,88,62.65,102.41,48,119.46,48ZM16,160H40v40H16Zm203.43,8.21-38,16.18L119,200H56V155.31l22.63-22.62A15.86,15.86,0,0,1,89.94,128H140a12,12,0,0,1,0,24H112a8,8,0,0,0,0,16h32a8.32,8.32,0,0,0,1.79-.2l67-15.41.31-.08a8.6,8.6,0,0,1,6.3,15.9Z"/></svg><span>Giver</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.85a32,32,0,0,1-41.67-45.85ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l18,19.75a48,48,0,0,0,63.66,70l14.73,16.2A112,112,0,0,1,128,192Zm6-95.43a8,8,0,0,1,3-15.72,48.16,48.16,0,0,1,38.77,42.64,8,8,0,0,1-7.22,8.71,6.39,6.39,0,0,1-.75,0,8,8,0,0,1-8-7.26A32.09,32.09,0,0,0,134,96.57Zm113.28,34.69c-.42.94-10.55,23.37-33.36,43.8a8,8,0,1,1-10.67-11.92A132.77,132.77,0,0,0,231.05,128a133.15,133.15,0,0,0-23.12-30.77C185.67,75.19,158.78,64,128,64a118.37,118.37,0,0,0-19.36,1.57A8,8,0,1,1,106,49.79,134,134,0,0,1,128,48c34.88,0,66.57,13.26,91.66,38.35,18.83,18.83,27.3,37.62,27.65,38.41A8,8,0,0,1,247.31,131.26Z"/></svg><span>Avoider</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/></svg><span>Investor</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"/></svg><span>Planner</span></li></ul>
+        <p>Understanding your money personality helps you:</p>
+        <ul class="gems"><li><i class="dia" aria-hidden="true"></i><span>Recognize your financial habits and behaviors.</span></li><li><i class="dia" aria-hidden="true"></i><span>Set financial goals.</span></li><li><i class="dia" aria-hidden="true"></i><span>Understand why you struggle to stick to budgets.</span></li><li><i class="dia" aria-hidden="true"></i><span>Identify emotional and impulsive spending triggers.</span></li><li><i class="dia" aria-hidden="true"></i><span>Develop saving strategies that suit your behavior.</span></li><li><i class="dia" aria-hidden="true"></i><span>Become more intentional about borrowing, spending, insurance and investing.</span></li></ul>
+      </div>
+    </div>
+    <div class="investor">
+      <h3>What type of investor are you?</h3>
+      <ol class="spectrum"><span class="spectrum-line" aria-hidden="true"></span><li style="--c: var(--green)"><span class="node">1</span><span><b>Conservative</b><span class="nick">the capital preserver</span></span></li><li style="--c: #7fbf6a"><span class="node">2</span><span><b>Moderate</b><span class="nick">the balanced planner</span></span></li><li style="--c: var(--gold)"><span class="node">3</span><span><b>Aggressive</b><span class="nick">the wealth-builder</span></span></li><li style="--c: var(--gold-lt)"><span class="node">4</span><span><b>Speculative</b><span class="nick">the active trader</span></span></li></ol>
+    </div>
+    <div class="reflect">
+      <p>A SACCO that knows where its members lie in personality and financial season can make investment decisions that serve them in each season.</p>
+      <a class="btn btn-light" href="mailto:cbagabirwe@gmail.com?subject=Booking%20the%20SACCO%20signature%20session"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>Email Catherine to book it</a>
+    </div>
+  </div>
+</section>
+
+<section class="cbh" id="cbh">
+  <div class="wrap">
+    <div class="cbh-head">
+      <h2><img class="cbh-logo" src="images/brand/cbh-logo.svg" width="564" height="256" alt="CBH Advisory"></h2>
+      <div>
         <p class="tagline"><span>Master your money,</span> own your future</p>
+        <p class="founded">Catherine founded CBH Advisory.</p>
       </div>
     </div>
-    <ul class="verbs stagger">
-      <li style="--i: 0" class="card"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M184,89.57V84c0-25.08-37.83-44-88-44S8,58.92,8,84v40c0,20.89,26.25,37.49,64,42.46V172c0,25.08,37.83,44,88,44s88-18.92,88-44V132C248,111.3,222.58,94.68,184,89.57ZM232,132c0,13.22-30.79,28-72,28-3.73,0-7.43-.13-11.08-.37C170.49,151.77,184,139,184,124V105.74C213.87,110.19,232,122.27,232,132ZM72,150.25V126.46A183.74,183.74,0,0,0,96,128a183.74,183.74,0,0,0,24-1.54v23.79A163,163,0,0,1,96,152,163,163,0,0,1,72,150.25Zm96-40.32V124c0,8.39-12.41,17.4-32,22.87V123.5C148.91,120.37,159.84,115.71,168,109.93ZM96,56c41.21,0,72,14.78,72,28s-30.79,28-72,28S24,97.22,24,84,54.79,56,96,56ZM24,124V109.93c8.16,5.78,19.09,10.44,32,13.57v23.37C36.41,141.4,24,132.39,24,124Zm64,48v-4.17c2.63.1,5.29.17,8,.17,3.88,0,7.67-.13,11.39-.35A121.92,121.92,0,0,0,120,171.41v23.46C100.41,189.4,88,180.39,88,172Zm48,26.25V174.4a179.48,179.48,0,0,0,24,1.6,183.74,183.74,0,0,0,24-1.54v23.79a165.45,165.45,0,0,1-48,0Zm64-3.38V171.5c12.91-3.13,23.84-7.79,32-13.57V172C232,180.39,219.59,189.4,200,194.87Z"/></svg></span><h3>Earn</h3><p>Diversify how you earn and build multiple sources of income.</p></li>
-      <li style="--i: 1" class="card"><span class="icon-chip navy"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,64H56a8,8,0,0,1,0-16H192a8,8,0,0,0,0-16H56A24,24,0,0,0,32,56V184a24,24,0,0,0,24,24H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64Zm0,128H56a8,8,0,0,1-8-8V78.63A23.84,23.84,0,0,0,56,80H216Zm-48-60a12,12,0,1,1,12,12A12,12,0,0,1,168,132Z"/></svg></span><h3>Manage</h3><p>Organize day-to-day finances, build a useful budget and take control of cash flow.</p></li>
-      <li style="--i: 2" class="card"><span class="icon-chip gold"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M192,116a12,12,0,1,1-12-12A12,12,0,0,1,192,116ZM152,64H112a8,8,0,0,0,0,16h40a8,8,0,0,0,0-16Zm96,48v32a24,24,0,0,1-24,24h-2.36l-16.21,45.38A16,16,0,0,1,190.36,224H177.64a16,16,0,0,1-15.07-10.62L160.65,208h-57.3l-1.92,5.38A16,16,0,0,1,86.36,224H73.64a16,16,0,0,1-15.07-10.62L46,178.22a87.69,87.69,0,0,1-21.44-48.38A16,16,0,0,0,16,144a8,8,0,0,1-16,0,32,32,0,0,1,24.28-31A88.12,88.12,0,0,1,112,32H216a8,8,0,0,1,0,16H194.61a87.93,87.93,0,0,1,30.17,37c.43,1,.85,2,1.25,3A24,24,0,0,1,248,112Zm-16,0a8,8,0,0,0-8-8h-3.66a8,8,0,0,1-7.64-5.6A71.9,71.9,0,0,0,144,48H112A72,72,0,0,0,58.91,168.64a8,8,0,0,1,1.64,2.71L73.64,208H86.36l3.82-10.69A8,8,0,0,1,97.71,192h68.58a8,8,0,0,1,7.53,5.31L177.64,208h12.72l18.11-50.69A8,8,0,0,1,216,152h8a8,8,0,0,0,8-8Z"/></svg></span><h3>Save</h3><p>Set savings priorities and prepare for emergencies and unexpected expenses.</p></li>
-      <li style="--i: 3" class="card"><span class="icon-chip navy"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,126.63A112.44,112.44,0,0,0,51.75,53.75a111.56,111.56,0,0,0-35.7,72.88A16,16,0,0,0,32,144h88v56a32,32,0,0,0,64,0,8,8,0,0,0-16,0,16,16,0,0,1-32,0V144h88a16,16,0,0,0,16-17.37ZM32,128l0,0a96.15,96.15,0,0,1,76.2-85.89C96.48,58,81.85,86.11,80.17,128Zm64.15,0c1.39-30.77,10.53-52.81,18.3-66.24A106.44,106.44,0,0,1,128,43.16a106.31,106.31,0,0,1,13.52,18.6C154.8,84.7,159,109.28,159.82,128Zm79.65,0c-1.68-41.89-16.31-70-28-85.94A96.07,96.07,0,0,1,224,128Z"/></svg></span><h3>Protect</h3><p>Understand the role of insurance and protection in a financial plan.</p></li>
-      <li style="--i: 4" class="card"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,56v64a8,8,0,0,1-16,0V75.31l-82.34,82.35a8,8,0,0,1-11.32,0L96,123.31,29.66,189.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0L136,140.69,212.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,240,56Z"/></svg></span><h3>Grow</h3><p>Make informed investment choices, then plan for future goals and retirement.</p></li>
+    <ol class="stairs">
+      <li style="--k: 0; --bg: #e9f3ee; --fg: #021d3e"><div class="top"><span class="verb">Earn</span><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M184,89.57V84c0-25.08-37.83-44-88-44S8,58.92,8,84v40c0,20.89,26.25,37.49,64,42.46V172c0,25.08,37.83,44,88,44s88-18.92,88-44V132C248,111.3,222.58,94.68,184,89.57ZM232,132c0,13.22-30.79,28-72,28-3.73,0-7.43-.13-11.08-.37C170.49,151.77,184,139,184,124V105.74C213.87,110.19,232,122.27,232,132ZM72,150.25V126.46A183.74,183.74,0,0,0,96,128a183.74,183.74,0,0,0,24-1.54v23.79A163,163,0,0,1,96,152,163,163,0,0,1,72,150.25Zm96-40.32V124c0,8.39-12.41,17.4-32,22.87V123.5C148.91,120.37,159.84,115.71,168,109.93ZM96,56c41.21,0,72,14.78,72,28s-30.79,28-72,28S24,97.22,24,84,54.79,56,96,56ZM24,124V109.93c8.16,5.78,19.09,10.44,32,13.57v23.37C36.41,141.4,24,132.39,24,124Zm64,48v-4.17c2.63.1,5.29.17,8,.17,3.88,0,7.67-.13,11.39-.35A121.92,121.92,0,0,0,120,171.41v23.46C100.41,189.4,88,180.39,88,172Zm48,26.25V174.4a179.48,179.48,0,0,0,24,1.6,183.74,183.74,0,0,0,24-1.54v23.79a165.45,165.45,0,0,1-48,0Zm64-3.38V171.5c12.91-3.13,23.84-7.79,32-13.57V172C232,180.39,219.59,189.4,200,194.87Z"/></svg></div><p>Diversify how you earn and build multiple sources of income.</p></li>
+      <li style="--k: 1; --bg: #149a5e; --fg: #021d3e"><div class="top"><span class="verb">Manage</span><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,64H56a8,8,0,0,1,0-16H192a8,8,0,0,0,0-16H56A24,24,0,0,0,32,56V184a24,24,0,0,0,24,24H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64Zm0,128H56a8,8,0,0,1-8-8V78.63A23.84,23.84,0,0,0,56,80H216Zm-48-60a12,12,0,1,1,12,12A12,12,0,0,1,168,132Z"/></svg></div><p>Organize day-to-day finances, build a useful budget and take control of cash flow.</p></li>
+      <li style="--k: 2; --bg: #c9a55a; --fg: #021d3e"><div class="top"><span class="verb">Save</span><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M192,116a12,12,0,1,1-12-12A12,12,0,0,1,192,116ZM152,64H112a8,8,0,0,0,0,16h40a8,8,0,0,0,0-16Zm96,48v32a24,24,0,0,1-24,24h-2.36l-16.21,45.38A16,16,0,0,1,190.36,224H177.64a16,16,0,0,1-15.07-10.62L160.65,208h-57.3l-1.92,5.38A16,16,0,0,1,86.36,224H73.64a16,16,0,0,1-15.07-10.62L46,178.22a87.69,87.69,0,0,1-21.44-48.38A16,16,0,0,0,16,144a8,8,0,0,1-16,0,32,32,0,0,1,24.28-31A88.12,88.12,0,0,1,112,32H216a8,8,0,0,1,0,16H194.61a87.93,87.93,0,0,1,30.17,37c.43,1,.85,2,1.25,3A24,24,0,0,1,248,112Zm-16,0a8,8,0,0,0-8-8h-3.66a8,8,0,0,1-7.64-5.6A71.9,71.9,0,0,0,144,48H112A72,72,0,0,0,58.91,168.64a8,8,0,0,1,1.64,2.71L73.64,208H86.36l3.82-10.69A8,8,0,0,1,97.71,192h68.58a8,8,0,0,1,7.53,5.31L177.64,208h12.72l18.11-50.69A8,8,0,0,1,216,152h8a8,8,0,0,0,8-8Z"/></svg></div><p>Set savings priorities and prepare for emergencies and unexpected expenses.</p></li>
+      <li style="--k: 3; --bg: #0b6b45; --fg: #ffffff"><div class="top"><span class="verb">Protect</span><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,126.63A112.44,112.44,0,0,0,51.75,53.75a111.56,111.56,0,0,0-35.7,72.88A16,16,0,0,0,32,144h88v56a32,32,0,0,0,64,0,8,8,0,0,0-16,0,16,16,0,0,1-32,0V144h88a16,16,0,0,0,16-17.37ZM32,128l0,0a96.15,96.15,0,0,1,76.2-85.89C96.48,58,81.85,86.11,80.17,128Zm64.15,0c1.39-30.77,10.53-52.81,18.3-66.24A106.44,106.44,0,0,1,128,43.16a106.31,106.31,0,0,1,13.52,18.6C154.8,84.7,159,109.28,159.82,128Zm79.65,0c-1.68-41.89-16.31-70-28-85.94A96.07,96.07,0,0,1,224,128Z"/></svg></div><p>Understand the role of insurance and protection in a financial plan.</p></li>
+      <li style="--k: 4; --bg: #021d3e; --fg: #ffffff"><div class="top"><span class="verb">Grow</span><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></div><p>Make informed investment choices, then plan for future goals and retirement.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="training" id="training">
+  <div class="wrap tr-grid">
+    <div class="tr-head">
+      <h2>Seven modules, from <span style="white-space:nowrap">day-to-day</span> money to investing</h2>
+      <p>Sessions are tailored to each audience and built around the decisions participants face.</p>
+      <a class="btn btn-primary" href="#contact">Plan a training</a>
+    </div>
+    <ol class="sheets">
+      <li class="sheet" style="--i: 0; --bg: #ffffff"><span class="sheet-num" aria-hidden="true">01</span><div><h3><span class="sr">Module 01: </span>Personal money management</h3><p>Understanding income and expenses, organizing day-to-day finances and developing a realistic approach to managing available money.</p></div></li>
+      <li class="sheet" style="--i: 1; --bg: #eef6f1"><span class="sheet-num" aria-hidden="true">02</span><div><h3><span class="sr">Module 02: </span>Budgeting and spending decisions</h3><p>Building useful budgets, identifying spending priorities and developing habits that give participants greater control of their cash flow.</p></div></li>
+      <li class="sheet" style="--i: 2; --bg: #faf3e3"><span class="sheet-num" aria-hidden="true">03</span><div><h3><span class="sr">Module 03: </span>Savings and financial preparedness</h3><p>Understanding the importance of saving, setting savings priorities and preparing for unexpected expenses and emergencies.</p></div></li>
+      <li class="sheet" style="--i: 3; --bg: #edf1f8"><span class="sheet-num" aria-hidden="true">04</span><div><h3><span class="sr">Module 04: </span>Debt awareness and management</h3><p>Recognizing the impact of debt, reviewing borrowing decisions and managing financial obligations more deliberately.</p></div></li>
+      <li class="sheet" style="--i: 4; --bg: #ffffff"><span class="sheet-num" aria-hidden="true">05</span><div><h3><span class="sr">Module 05: </span>Financial planning and goal setting</h3><p>Connecting present-day money decisions to future goals and planning for important life and financial milestones.</p></div></li>
+      <li class="sheet" style="--i: 5; --bg: #eef6f1"><span class="sheet-num" aria-hidden="true">06</span><div><h3><span class="sr">Module 06: </span>Insurance, wealth protection and risk management</h3><p>Understanding the role of insurance and protection in a financial plan and in managing financial risk, drawn from professional experience in insurance and financial advisory.</p></div></li>
+      <li class="sheet" style="--i: 6; --bg: #faf3e3"><span class="sheet-num" aria-hidden="true">07</span><div><h3><span class="sr">Module 07: </span>Understanding investments</h3><p>Recognizing what kind of investor you are, from capital preserver to active trader, and adjusting the mix of growth, balanced and conservative assets with age, from businesses and land to unit trusts and treasury bonds.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="aud" id="audiences">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Employers, SACCOs, schools and families</h2>
+      <p>Catherine tailors each session to the needs and circumstances of the group, so that participants can apply the learning in their daily lives.</p>
+    </div>
+    <ul class="aud-list">
+      <li><span class="aud-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,208H224V96a16,16,0,0,0-16-16H144V32a16,16,0,0,0-24.88-13.32L39.12,72A16,16,0,0,0,32,85.34V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM208,96V208H144V96ZM48,85.34,128,32V208H48ZM112,112v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm-32,0v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm0,56v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Zm32,0v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Z"/></svg></span><div><h3>Employers and workplaces</h3><p>Employee financial wellness: practical learning on the money pressures and everyday decisions staff face.</p></div></li>
+      <li><span class="aud-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l55.07-55.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41ZM41.53,64,62,74.22,36.43,125.27,16,115.06Zm116,119.13L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm62-57.87-25.52-51L214.47,64,240,115.06Zm-87.75,92.67a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></svg></span><div><h3>SACCO members</h3><p>A culture of financial wellness beyond saving and borrowing, built on members’ money personalities and financial seasons.</p></div></li>
+      <li><span class="aud-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M226.53,56.41l-96-32a8,8,0,0,0-5.06,0l-96,32A8,8,0,0,0,24,64v80a8,8,0,0,0,16,0V75.1L73.59,86.29a64,64,0,0,0,20.65,88.05c-18,7.06-33.56,19.83-44.94,37.29a8,8,0,1,0,13.4,8.74C77.77,197.25,101.57,184,128,184s50.23,13.25,65.3,36.37a8,8,0,0,0,13.4-8.74c-11.38-17.46-27-30.23-44.94-37.29a64,64,0,0,0,20.65-88l44.12-14.7a8,8,0,0,0,0-15.18ZM176,120A48,48,0,1,1,89.35,91.55l36.12,12a8,8,0,0,0,5.06,0l36.12-12A47.89,47.89,0,0,1,176,120ZM128,87.57,57.3,64,128,40.43,198.7,64Z"/></svg></span><div><h3>Schools</h3><p>Financial literacy for teachers and for students, with each session adapted to the group.</p></div></li>
+      <li><span class="aud-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,208H224V136l2.34,2.34A8,8,0,0,0,237.66,127L139.31,28.68a16,16,0,0,0-22.62,0L18.34,127a8,8,0,0,0,11.32,11.31L32,136v72H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,120l80-80,80,80v88H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48Zm96,88H112V160h32Z"/></svg></span><div><h3>Families</h3><p>Shared financial conversations, household budgeting, savings priorities and preparation for future needs.</p></div></li>
+      <li><span class="aud-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></span><div><h3>Individuals</h3><p>Stronger personal money-management habits, informed choices and steady work towards financial stability.</p></div></li>
+      <li><span class="aud-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M24,104H48v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16H208V104h24a8,8,0,0,0,4.19-14.81l-104-64a8,8,0,0,0-8.38,0l-104,64A8,8,0,0,0,24,104Zm40,0H96v64H64Zm80,0v64H112V104Zm48,64H160V104h32ZM128,41.39,203.74,88H52.26ZM248,208a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H240A8,8,0,0,1,248,208Z"/></svg></span><div><h3>Businesses, institutions and community groups</h3><p>Financial literacy learning that can strengthen the financial knowledge and confidence of staff and participant groups.</p></div></li>
     </ul>
   </div>
 </section>
 
-<section id="signature" class="sig">
+<section class="how" id="approach">
   <div class="wrap">
-    <div class="sig-top">
-      <div class="sec-head">
-        <p class="tag"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg>Signature session for SACCO members</p>
-        <h2>Beyond saving and borrowing</h2>
-        <p>Her signature session builds a culture of financial wellness for SACCO members. The financial state of a SACCO roots from the individual state of its members, so understanding each member’s personal strengths and weaknesses is what bridges the gaps a SACCO faces.</p>
-        <a class="btn btn-light" href="mailto:cbagabirwe@gmail.com?subject=Booking%20the%20SACCO%20signature%20session"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>Email Catherine to book it</a>
+    <div class="sec-head"><h2>How a session runs</h2></div>
+    <ol class="how-steps">
+      <li><span class="n" aria-hidden="true">1</span><h3><span class="sr">Step 1: </span>Understand the audience</h3><p>Identify participants’ needs, financial questions and the challenges the training should address.</p></li>
+      <li><span class="n" aria-hidden="true">2</span><h3><span class="sr">Step 2: </span>Make the concepts relatable</h3><p>Use clear explanations and practical examples to connect financial ideas to everyday decisions.</p></li>
+      <li><span class="n" aria-hidden="true">3</span><h3><span class="sr">Step 3: </span>Focus on application</h3><p>Help participants turn learning into action on budgeting, spending, saving, debt and planning.</p></li>
+      <li><span class="n" aria-hidden="true">4</span><h3><span class="sr">Step 4: </span>Build confidence over time</h3><p>Reinforce informed decision-making and healthy money habits that last beyond the training.</p></li>
+    </ol>
+    <p class="principle"><i class="dia" aria-hidden="true"></i><span>Bridge the gap between earning money and managing it effectively.</span></p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-main">
+        <h2>A career in financial services</h2>
+        <p class="dropcap">Catherine Brenda Agabirwe is a financial advisory specialist and Financial Literacy Trainer. Throughout a career at financial services providers such as Prudential Assurance Uganda Limited and Old Mutual Uganda, she built expertise in personal financial planning and management, wealth protection and investment. She is based in Kampala, Uganda.</p>
+      </div>
+      <blockquote class="mission">
+        <p>“To transform the way people earn, manage, save, protect, and grow their money, one individual at a time.”</p>
+        <cite><i class="dia" aria-hidden="true"></i>Her mission</cite>
+      </blockquote>
+    </div>
+    <div class="ledger">
+      <div>
+        <h3>Qualifications</h3>
+        <ul>
+          <li><i class="dia" aria-hidden="true"></i><span><b>Bachelor of Commerce</b><span class="d">Makerere University Business School</span></span></li>
+          <li><i class="dia" aria-hidden="true"></i><span><b>Certificate of Proficiency in Insurance</b><span class="d">Insurance Training College</span></span></li>
+          <li><i class="dia" aria-hidden="true"></i><span><b>Accredited Financial Literacy Trainer</b><span class="d">Bank of Uganda</span></span></li>
+        </ul>
       </div>
       <div>
-        <p class="seasons-note">Just as nature has different seasons, our financial lives also have seasons. Each season comes with different financial opportunities, responsibilities, challenges and priorities.</p>
-        <ol class="seasons">
-          <li style="--c: var(--green); --t: #021d3e"><span class="dot">1</span><span><b>Earning</b></span></li>
-          <li style="--c: var(--green-dk); --t: #fff"><span class="dot">2</span><span><b>Building</b></span></li>
-          <li style="--c: var(--gold); --t: #021d3e"><span class="dot">3</span><span><b>Harvesting</b></span></li>
-          <li style="--c: var(--navy-3); --t: #fff"><span class="dot">4</span><span><b>Transition</b></span></li>
-          <li style="--c: #ffffff; --t: #021d3e"><span class="dot">5</span><span><b>Preservation</b><small>Retirement and legacy</small></span></li>
-        </ol>
-      </div>
-    </div>
-    <div class="sig-cards stagger">
-      <div class="card-navy" style="--i: 0"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M221.87,83.16A104.1,104.1,0,1,1,195.67,49l22.67-22.68a8,8,0,0,1,11.32,11.32l-96,96a8,8,0,0,1-11.32-11.32l27.72-27.72a40,40,0,1,0,17.87,31.09,8,8,0,1,1,16-.9,56,56,0,1,1-22.38-41.65L184.3,60.39a87.88,87.88,0,1,0,23.13,29.67,8,8,0,0,1,14.44-6.9Z"/></svg></span><h3>Why the seasons matter</h3><ul class="ticks"><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>They help us prepare for financial challenges.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>They help us avoid the mid-month financial crunch.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>They encourage saving and investing during seasons of abundance.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>They help us make better financial decisions.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>They reduce financial stress and anxiety.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>They help us manage debt responsibly.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>They promote long-term financial stability.</span></li></ul></div>
-      <div class="card-navy" style="--i: 1"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-16,0a72,72,0,0,0-73.74-72c-39,.92-70.47,33.39-70.26,72.39a71.65,71.65,0,0,0,27.64,56.3A32,32,0,0,1,96,186v6h64v-6a32.15,32.15,0,0,1,12.47-25.35A71.65,71.65,0,0,0,200,104Zm-16.11-9.34a57.6,57.6,0,0,0-46.56-46.55,8,8,0,0,0-2.66,15.78c16.57,2.79,30.63,16.85,33.44,33.45A8,8,0,0,0,176,104a9,9,0,0,0,1.35-.11A8,8,0,0,0,183.89,94.66Z"/></svg></span><h3>What is your money personality?</h3><p>The attitudes, beliefs, emotions and behaviors behind how each person relates to money.</p>
-        <ul class="chips"><li>Spender</li><li>Saver</li><li>Giver</li><li>Avoider</li><li>Investor</li><li>Planner</li></ul>
-        <p>Understanding your money personality helps you:</p><ul class="ticks"><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Recognize your financial habits and behaviors.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Set financial goals.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Understand why you struggle to stick to budgets.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Identify emotional and impulsive spending triggers.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Develop saving strategies that suit your behavior.</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Become more intentional about borrowing, spending, insurance and investing.</span></li></ul></div>
-      <div class="card-navy" style="--i: 2"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,56v64a8,8,0,0,1-16,0V75.31l-82.34,82.35a8,8,0,0,1-11.32,0L96,123.31,29.66,189.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0L136,140.69,212.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,240,56Z"/></svg></span><h3>What type of investor are you?</h3>
-        <ul class="inv"><li><b>Conservative</b><span>the capital preserver</span></li><li><b>Moderate</b><span>the balanced planner</span></li><li><b>Aggressive</b><span>the wealth-builder</span></li><li><b>Speculative</b><span>the active trader</span></li></ul></div>
-    </div>
-    <div class="reflect">
-      <p>A SACCO that knows where its members lie in personality and financial season can make investment decisions that serve them in each season.</p>
-      <a class="btn btn-primary" href="mailto:cbagabirwe@gmail.com?subject=Booking%20the%20SACCO%20signature%20session">Book this session</a>
-    </div>
-  </div>
-</section>
-
-<section id="training">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="tag"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H53.39a8,8,0,0,0,7.23-4.57,48,48,0,0,1,86.76,0,8,8,0,0,0,7.23,4.57H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM80,144a24,24,0,1,1,24,24A24,24,0,0,1,80,144Zm136,56H159.43a64.39,64.39,0,0,0-28.83-26.16,40,40,0,1,0-53.2,0A64.39,64.39,0,0,0,48.57,200H40V56H216ZM56,96V80a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H176a8,8,0,0,1,0-16h8V88H72v8a8,8,0,0,1-16,0Z"/></svg>Training modules</p>
-      <h2>Seven modules, from <span style="white-space:nowrap">day-to-day</span> money to investing</h2>
-      <p>Sessions are tailored to each audience and built around the decisions participants face.</p>
-    </div>
-    <ol class="mod-grid stagger">
-      <li style="--i: 0" class="card"><span class="mod-num">01</span><h3>Personal money management</h3><p>Understanding income and expenses, organizing day-to-day finances and developing a realistic approach to managing available money.</p></li>
-      <li style="--i: 1" class="card"><span class="mod-num">02</span><h3>Budgeting and spending decisions</h3><p>Building useful budgets, identifying spending priorities and developing habits that give participants greater control of their cash flow.</p></li>
-      <li style="--i: 2" class="card"><span class="mod-num">03</span><h3>Savings and financial preparedness</h3><p>Understanding the importance of saving, setting savings priorities and preparing for unexpected expenses and emergencies.</p></li>
-      <li style="--i: 3" class="card"><span class="mod-num">04</span><h3>Debt awareness and management</h3><p>Recognizing the impact of debt, reviewing borrowing decisions and managing financial obligations more deliberately.</p></li>
-      <li style="--i: 4" class="card"><span class="mod-num">05</span><h3>Financial planning and goal setting</h3><p>Connecting present-day money decisions to future goals and planning for important life and financial milestones.</p></li>
-      <li style="--i: 5" class="card"><span class="mod-num">06</span><h3>Insurance, wealth protection and risk management</h3><p>Understanding the role of insurance and protection in a financial plan and in managing financial risk, drawn from professional experience in insurance and financial advisory.</p></li>
-      <li style="--i: 6" class="card"><span class="mod-num">07</span><h3>Understanding investments</h3><p>Recognizing what kind of investor you are, from capital preserver to active trader, and adjusting the mix of growth, balanced and conservative assets with age, from businesses and land to unit trusts and treasury bonds.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section id="audiences" class="process">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="tag"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"/></svg>Who she trains</p>
-      <h2>Employers, SACCOs, schools and families</h2>
-      <p>Catherine tailors each session to the needs and circumstances of the group, so that participants can apply the learning in their daily lives.</p>
-    </div>
-    <div class="aud-grid stagger">
-      <div style="--i: 0" class="card"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,208H224V96a16,16,0,0,0-16-16H144V32a16,16,0,0,0-24.88-13.32L39.12,72A16,16,0,0,0,32,85.34V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM208,96V208H144V96ZM48,85.34,128,32V208H48ZM112,112v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm-32,0v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm0,56v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Zm32,0v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Z"/></svg></span><div><h3>Employers and workplaces</h3><p>Employee financial wellness: practical learning on the money pressures and everyday decisions staff face.</p></div></div>
-      <div style="--i: 1" class="card"><span class="icon-chip navy"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l55.07-55.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41ZM41.53,64,62,74.22,36.43,125.27,16,115.06Zm116,119.13L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm62-57.87-25.52-51L214.47,64,240,115.06Zm-87.75,92.67a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></svg></span><div><h3>SACCO members</h3><p>A culture of financial wellness beyond saving and borrowing, built on members’ money personalities and financial seasons.</p></div></div>
-      <div style="--i: 2" class="card"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M226.53,56.41l-96-32a8,8,0,0,0-5.06,0l-96,32A8,8,0,0,0,24,64v80a8,8,0,0,0,16,0V75.1L73.59,86.29a64,64,0,0,0,20.65,88.05c-18,7.06-33.56,19.83-44.94,37.29a8,8,0,1,0,13.4,8.74C77.77,197.25,101.57,184,128,184s50.23,13.25,65.3,36.37a8,8,0,0,0,13.4-8.74c-11.38-17.46-27-30.23-44.94-37.29a64,64,0,0,0,20.65-88l44.12-14.7a8,8,0,0,0,0-15.18ZM176,120A48,48,0,1,1,89.35,91.55l36.12,12a8,8,0,0,0,5.06,0l36.12-12A47.89,47.89,0,0,1,176,120ZM128,87.57,57.3,64,128,40.43,198.7,64Z"/></svg></span><div><h3>Schools</h3><p>Financial literacy for teachers and for students, with each session adapted to the group.</p></div></div>
-      <div style="--i: 3" class="card"><span class="icon-chip navy"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M240,208H224V136l2.34,2.34A8,8,0,0,0,237.66,127L139.31,28.68a16,16,0,0,0-22.62,0L18.34,127a8,8,0,0,0,11.32,11.31L32,136v72H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,120l80-80,80,80v88H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48Zm96,88H112V160h32Z"/></svg></span><div><h3>Families</h3><p>Shared financial conversations, household budgeting, savings priorities and preparation for future needs.</p></div></div>
-      <div style="--i: 4" class="card"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></span><div><h3>Individuals</h3><p>Stronger personal money-management habits, informed choices and steady work towards financial stability.</p></div></div>
-      <div style="--i: 5" class="card"><span class="icon-chip navy"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M24,104H48v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16H208V104h24a8,8,0,0,0,4.19-14.81l-104-64a8,8,0,0,0-8.38,0l-104,64A8,8,0,0,0,24,104Zm40,0H96v64H64Zm80,0v64H112V104Zm48,64H160V104h32ZM128,41.39,203.74,88H52.26ZM248,208a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H240A8,8,0,0,1,248,208Z"/></svg></span><div><h3>Businesses, institutions and community groups</h3><p>Financial literacy learning that can strengthen the financial knowledge and confidence of staff and participant groups.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="approach">
-  <div class="wrap">
-    <div class="sec-head center">
-      <h2>How a session runs</h2>
-    </div>
-    <ol class="steps">
-      <li><span class="num">1</span><h3>Understand the audience</h3><p>Identify participants’ needs, financial questions and the challenges the training should address.</p></li>
-      <li><span class="num">2</span><h3>Make the concepts relatable</h3><p>Use clear explanations and practical examples to connect financial ideas to everyday decisions.</p></li>
-      <li><span class="num">3</span><h3>Focus on application</h3><p>Help participants turn learning into action on budgeting, spending, saving, debt and planning.</p></li>
-      <li><span class="num">4</span><h3>Build confidence over time</h3><p>Reinforce informed decision-making and healthy money habits that last beyond the training.</p></li>
-    </ol>
-    <p class="principle"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-16,0a72,72,0,0,0-73.74-72c-39,.92-70.47,33.39-70.26,72.39a71.65,71.65,0,0,0,27.64,56.3A32,32,0,0,1,96,186v6h64v-6a32.15,32.15,0,0,1,12.47-25.35A71.65,71.65,0,0,0,200,104Zm-16.11-9.34a57.6,57.6,0,0,0-46.56-46.55,8,8,0,0,0-2.66,15.78c16.57,2.79,30.63,16.85,33.44,33.45A8,8,0,0,0,176,104a9,9,0,0,0,1.35-.11A8,8,0,0,0,183.89,94.66Z"/></svg><span>Bridge the gap between earning money and managing it effectively.</span></p>
-  </div>
-</section>
-
-<section id="about" class="process">
-  <div class="wrap about-grid">
-    <div>
-      <div class="about-photo"><img src="images/catherine-brenda-agabirwe.webp" width="600" height="900" alt="" loading="lazy"></div>
-      <p class="quote">Earning an income is only one part of financial wellbeing.<cite>The belief behind Catherine’s work</cite></p>
-    </div>
-    <div class="about-copy">
-      <h2>A career in financial services</h2>
-      <p>Catherine Brenda Agabirwe is a financial advisory specialist and Financial Literacy Trainer. Throughout a career at financial services providers such as Prudential Assurance Uganda Limited and Old Mutual Uganda, she built expertise in personal financial planning and management, wealth protection and investment.</p>
-      <p>She recognizes the money challenges that individuals, families, companies and other groups share: living from salary to salary, struggling with debt, inadequate savings, weak budgeting practices and limited preparation for emergencies and retirement. Her training is designed to address these everyday realities in a practical, engaging way.</p>
-      <div class="about-lists">
-        <div class="card"><h3>Qualifications</h3><ul class="checks">
-          <li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span><b>Bachelor of Commerce</b><span>Makerere University Business School</span></span></li>
-          <li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span><b>Certificate of Proficiency in Insurance</b><span>Insurance Training College</span></span></li>
-          <li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span><b>Accredited Financial Literacy Trainer</b><span>Bank of Uganda</span></span></li>
-        </ul></div>
-        <div class="card"><h3>What she brings to a session</h3><ul class="checks"><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>Practical insight gained through life insurance sales and financial advisory</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>An understanding of personal financial management, financial planning, wealth protection and investment</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>A people-centred commitment to making financial knowledge useful in everyday life</span></li><li><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg><span>A focus on helping participants build confidence and apply money-management skills immediately</span></li></ul></div>
+        <h3>What she brings to a session</h3>
+        <ul><li><i class="dia" aria-hidden="true"></i><span>Practical insight gained through life insurance sales and financial advisory</span></li><li><i class="dia" aria-hidden="true"></i><span>An understanding of personal financial management, financial planning, wealth protection and investment</span></li><li><i class="dia" aria-hidden="true"></i><span>A people-centred commitment to making financial knowledge useful in everyday life</span></li><li><i class="dia" aria-hidden="true"></i><span>A focus on helping participants build confidence and apply money-management skills immediately</span></li></ul>
       </div>
     </div>
   </div>
 </section>
 
-<section id="kit" class="kit">
+<section class="kit" id="kit">
   <div class="wrap">
     <div class="sec-head">
-      <p class="tag"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M83.19,174.4a8,8,0,0,0,11.21-1.6,52,52,0,0,1,83.2,0,8,8,0,1,0,12.8-9.6A67.88,67.88,0,0,0,163,141.51a40,40,0,1,0-53.94,0A67.88,67.88,0,0,0,81.6,163.2,8,8,0,0,0,83.19,174.4ZM112,112a24,24,0,1,1,24,24A24,24,0,0,1,112,112Zm96-88H64A16,16,0,0,0,48,40V64H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v24a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V40A16,16,0,0,0,208,24Zm0,192H64V40H208Z"/></svg>For event organisers</p>
       <h2>Speaker kit</h2>
       <p>A short bio, headshot and contact card for programmes, invitations and introductions.</p>
     </div>
     <div class="kit-grid">
-      <div class="card">
+      <div class="kit-card">
         <h3>Short bio</h3>
         <p class="bio-text" id="bio">Catherine Brenda Agabirwe is the founder of CBH Advisory and a Bank of Uganda accredited Financial Literacy Trainer based in Kampala, Uganda. She brings eight years of professional experience in life insurance sales and financial advisory, and built expertise in personal financial planning and management, wealth protection and investment at financial services providers such as Prudential Assurance Uganda Limited and Old Mutual Uganda. Catherine holds a Bachelor of Commerce from Makerere University Business School and a Certificate of Proficiency in Insurance from the Insurance Training College. Her mission is to transform the way people earn, manage, save, protect, and grow their money, one individual at a time.</p>
-        <div class="row">
-          <button class="btn btn-outline" type="button" id="copy-bio"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></svg>Copy bio</button>
+        <div class="btns">
+          <button class="btn btn-line" type="button" id="copy-bio"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></svg>Copy bio</button>
           <span class="status" id="copy-status" role="status" aria-live="polite"></span>
         </div>
       </div>
-      <div class="card">
-        <img class="thumb" src="images/catherine-brenda-agabirwe.webp" width="600" height="900" alt="" loading="lazy">
-        <h3>Headshot</h3>
-        <p>Portrait for event programmes, posters and introductions.</p>
-        <div class="row"><a class="btn btn-outline" href="images/catherine-brenda-agabirwe.jpg" download="Catherine-Brenda-Agabirwe-headshot.jpg"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"/></svg>Download headshot</a></div>
-      </div>
-      <div class="card">
-        <h3>Profile and contact</h3>
-        <p>Save her contact card to your phone, or print this profile as a PDF.</p>
-        <div class="row">
-          <a class="btn btn-outline" href="catherine-brenda-agabirwe.vcf" download><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M83.19,174.4a8,8,0,0,0,11.21-1.6,52,52,0,0,1,83.2,0,8,8,0,1,0,12.8-9.6A67.88,67.88,0,0,0,163,141.51a40,40,0,1,0-53.94,0A67.88,67.88,0,0,0,81.6,163.2,8,8,0,0,0,83.19,174.4ZM112,112a24,24,0,1,1,24,24A24,24,0,0,1,112,112Zm96-88H64A16,16,0,0,0,48,40V64H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v24a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V40A16,16,0,0,0,208,24Zm0,192H64V40H208Z"/></svg>Save contact card</a>
-          <button class="btn btn-outline" type="button" id="print-profile"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M214.67,72H200V40a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8V72H41.33C27.36,72,16,82.77,16,96v80a8,8,0,0,0,8,8H56v32a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V184h32a8,8,0,0,0,8-8V96C240,82.77,228.64,72,214.67,72ZM72,48H184V72H72ZM184,208H72V160H184Zm40-40H200V152a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8v16H32V96c0-4.41,4.19-8,9.33-8H214.67c5.14,0,9.33,3.59,9.33,8Zm-24-52a12,12,0,1,1-12-12A12,12,0,0,1,200,116Z"/></svg>Print profile</button>
+      <div class="kit-side">
+        <div class="kit-card">
+          <div class="kit-row"><img src="images/catherine-brenda-agabirwe.webp" width="600" height="900" alt="" loading="lazy"><div><h3>Headshot</h3><p>Portrait for event programmes, posters and introductions.</p></div></div>
+          <div class="btns"><a class="btn btn-line" href="images/catherine-brenda-agabirwe.jpg" download="Catherine-Brenda-Agabirwe-headshot.jpg"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"/></svg>Download headshot</a></div>
+        </div>
+        <div class="kit-card">
+          <h3>Profile and contact</h3>
+          <p>Save her contact card to your phone, or print this profile as a PDF.</p>
+          <div class="btns">
+            <a class="btn btn-line" href="catherine-brenda-agabirwe.vcf" download><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M83.19,174.4a8,8,0,0,0,11.21-1.6,52,52,0,0,1,83.2,0,8,8,0,1,0,12.8-9.6A67.88,67.88,0,0,0,163,141.51a40,40,0,1,0-53.94,0A67.88,67.88,0,0,0,81.6,163.2,8,8,0,0,0,83.19,174.4ZM112,112a24,24,0,1,1,24,24A24,24,0,0,1,112,112Zm96-88H64A16,16,0,0,0,48,40V64H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v24a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V40A16,16,0,0,0,208,24Zm0,192H64V40H208Z"/></svg>Save contact card</a>
+            <button class="btn btn-line" type="button" id="print-profile"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M214.67,72H200V40a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8V72H41.33C27.36,72,16,82.77,16,96v80a8,8,0,0,0,8,8H56v32a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V184h32a8,8,0,0,0,8-8V96C240,82.77,228.64,72,214.67,72ZM72,48H184V72H72ZM184,208H72V160H184Zm40-40H200V152a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8v16H32V96c0-4.41,4.19-8,9.33-8H214.67c5.14,0,9.33,3.59,9.33,8Zm-24-52a12,12,0,1,1-12-12A12,12,0,0,1,200,116Z"/></svg>Print profile</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact" class="contact">
-  <div class="wrap contact-grid">
-    <div>
-      <h2>Plan a training with Catherine</h2>
-      <p class="lead">Practical financial literacy and financial wellness training tailored to your people and your organization.</p>
-      <ul class="contact-list">
-        <li><a href="tel:+256777721148"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg></span><span><small>Phone</small><b>+256 777 721 148</b></span></a></li>
-        <li><a href="tel:+256708904826"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg></span><span><small>Phone</small><b>+256 708 904 826</b></span></a></li>
-        <li><a href="mailto:cbagabirwe@gmail.com"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg></span><span><small>Email</small><b>cbagabirwe@gmail.com</b></span></a></li>
-        <li><div class="item"><span class="icon-chip"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></svg></span><span><small>Based in</small><b>Kampala, Uganda</b></span></div></li>
-      </ul>
-      <div class="side-actions"><a class="btn btn-ghost-light" href="catherine-brenda-agabirwe.vcf" download><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M83.19,174.4a8,8,0,0,0,11.21-1.6,52,52,0,0,1,83.2,0,8,8,0,1,0,12.8-9.6A67.88,67.88,0,0,0,163,141.51a40,40,0,1,0-53.94,0A67.88,67.88,0,0,0,81.6,163.2,8,8,0,0,0,83.19,174.4ZM112,112a24,24,0,1,1,24,24A24,24,0,0,1,112,112Zm96-88H64A16,16,0,0,0,48,40V64H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v24a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V40A16,16,0,0,0,208,24Zm0,192H64V40H208Z"/></svg>Save contact card</a></div>
+<section class="cta navy" id="contact">
+  <svg class="facets" viewBox="10 55 66 150" aria-hidden="true" focusable="false"><path fill="#0b6b45" d="M54.7 57 12 131 73.1 91Z"/><path fill="#021d3e" d="M73.1 91 12 131H50Z"/><path fill="#e2c47f" d="M12 131 53.1 202.1 54.4 200.5 50 131Z"/><path fill="#149a5e" d="M50 131 54.4 200.5 61.9 191.8 73.1 171Z"/></svg>
+  <div class="wrap">
+    <h2 class="climax">Let’s build financial confidence.</h2>
+    <p class="climax-sub">Partner with Catherine Brenda Agabirwe for practical financial literacy and financial wellness training tailored to your people and your organization.</p>
+    <div class="cta-grid">
+      <div>
+        <ul class="big-links">
+          <li><a href="tel:+256777721148"><small>Call</small><b>0777 721 148</b></a></li>
+          <li><a href="tel:+256708904826"><small>Call</small><b>0708 904 826</b></a></li>
+          <li><a href="mailto:cbagabirwe@gmail.com"><small>Email</small><b>cbagabirwe@gmail.com</b></a></li>
+          <li><div class="item"><small>Based in</small><b>Kampala, Uganda</b></div></li>
+        </ul>
+        <a class="btn btn-ghost vcf" href="catherine-brenda-agabirwe.vcf" download><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M83.19,174.4a8,8,0,0,0,11.21-1.6,52,52,0,0,1,83.2,0,8,8,0,1,0,12.8-9.6A67.88,67.88,0,0,0,163,141.51a40,40,0,1,0-53.94,0A67.88,67.88,0,0,0,81.6,163.2,8,8,0,0,0,83.19,174.4ZM112,112a24,24,0,1,1,24,24A24,24,0,0,1,112,112Zm96-88H64A16,16,0,0,0,48,40V64H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v40H32a8,8,0,0,0,0,16H48v24a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V40A16,16,0,0,0,208,24Zm0,192H64V40H208Z"/></svg>Save contact card</a>
+      </div>
+      <form class="form-card" id="enquiry" novalidate>
+        <h3>Send an enquiry</h3>
+        <p class="hint">Your email app opens with the enquiry addressed to Catherine, ready to send.</p>
+        <div class="two">
+          <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required><span class="err">Please enter your name.</span></div>
+          <div class="field"><label for="f-org">Organization <span class="opt">(optional)</span></label><input id="f-org" name="org" autocomplete="organization"></div>
+        </div>
+        <div class="field">
+          <label for="f-aud">Who is the training for?</label>
+          <select id="f-aud" name="audience">
+            <option>Employers and workplaces</option>
+            <option>SACCO members</option>
+            <option>Schools: teachers and students</option>
+            <option>Families</option>
+            <option>Individuals</option>
+            <option>Businesses, institutions and community groups</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg">What would you like the training to cover?</label><textarea id="f-msg" name="message" required></textarea><span class="err">Please add a short message.</span></div>
+        <button class="btn btn-primary" type="submit"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>Prepare the email</button>
+      </form>
     </div>
-    <form class="form-card" id="enquiry" novalidate>
-      <h3>Send an enquiry</h3>
-      <p class="hint">Your email app opens with the enquiry addressed to Catherine, ready to send.</p>
-      <div class="two">
-        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required><span class="err">Please enter your name.</span></div>
-        <div class="field"><label for="f-org">Organization <span class="opt">(optional)</span></label><input id="f-org" name="org" autocomplete="organization"></div>
-      </div>
-      <div class="field">
-        <label for="f-aud">Who is the training for?</label>
-        <select id="f-aud" name="audience">
-          <option>Employers and workplaces</option>
-          <option>SACCO members</option>
-          <option>Schools: teachers and students</option>
-          <option>Families</option>
-          <option>Individuals</option>
-          <option>Businesses, institutions and community groups</option>
-        </select>
-      </div>
-      <div class="field"><label for="f-msg">What would you like the training to cover?</label><textarea id="f-msg" name="message" required></textarea><span class="err">Please add a short message.</span></div>
-      <button class="btn btn-primary" type="submit"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>Prepare the email</button>
-    </form>
   </div>
 </section>
 
@@ -608,6 +691,11 @@ footer a { color: var(--navy); font-weight: 700; display: inline-flex; align-ite
     <a class="top" href="#top">Back to top</a>
   </div>
 </footer>
+
+<div class="callbar" id="callbar">
+  <a class="btn btn-primary" href="tel:+256777721148"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg>Call</a>
+  <a class="btn btn-ghost" href="mailto:cbagabirwe@gmail.com"><svg class="ic" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>Email</a>
+</div>
 
 <script>
 (function () {
@@ -661,18 +749,66 @@ footer a { color: var(--navy); font-weight: 700; display: inline-flex; align-ite
   });
 })();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script>
-(function () {
-  var groups = document.querySelectorAll('.stagger');
-  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.documentElement.classList.add('js-motion');
-  groups.forEach(function (g) { Array.prototype.forEach.call(g.children, function (c, i) { if (!c.style.getPropertyValue('--i')) c.style.setProperty('--i', i); }); });
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { rootMargin: '0px 0px -10% 0px' });
-  groups.forEach(function (g) { io.observe(g); });
-  setTimeout(function () { groups.forEach(function (g) { g.classList.add('in'); }); }, 3000);
-})();
+window.addEventListener('DOMContentLoaded', function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar = document.getElementById('callbar'), hero = document.querySelector('.hero'), contact = document.getElementById('contact');
+  if ('IntersectionObserver' in window && bar) {
+    var heroIn = true, contactIn = false;
+    var upd = function () { bar.classList.toggle('show', !heroIn && !contactIn); };
+    new IntersectionObserver(function (e) { heroIn = e[0].isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(function (e) { contactIn = e[0].isIntersecting; upd(); }, { threshold: 0.1 }).observe(contact);
+  }
+  if (reduce || !window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  if (window.Lenis) {
+    var lenis = new Lenis({ lerp: 0.11 });
+    document.documentElement.classList.add('lenis');
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href'); if (id.length < 2) return;
+        var el = document.querySelector(id); if (!el) return;
+        e.preventDefault(); lenis.scrollTo(el, { offset: -84 });
+      });
+    });
+  }
+  gsap.from('.name .line', { yPercent: 60, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: 0.09 });
+  gsap.from('.hero .role, .hero .lead, .hero .actions, .hero .cred-row', { y: 22, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.08, delay: 0.3 });
+  gsap.from('.hero-art .portrait', { scale: 1.05, opacity: 0, duration: 1.2, ease: 'expo.out', delay: 0.15 });
+  gsap.fromTo('.hero-art .arrow', { clipPath: 'inset(100% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.inOut', delay: 0.45 });
+  var st = document.querySelector('.statement');
+  if (st) {
+    st.innerHTML = st.textContent.split(' ').map(function (w) { return '<span class="w">' + w + '</span>'; }).join(' ');
+    gsap.fromTo(st.querySelectorAll('.w'), { opacity: 0.16 }, { opacity: 1, stagger: 0.12, ease: 'none', scrollTrigger: { trigger: st, start: 'top 82%', end: 'bottom 48%', scrub: true } });
+  }
+  gsap.utils.toArray('.ch-list li').forEach(function (li) {
+    gsap.fromTo(li, { opacity: 0.2 }, { opacity: 1, ease: 'none', scrollTrigger: { trigger: li, start: 'top 88%', end: 'top 55%', scrub: true } });
+  });
+  var mm = gsap.matchMedia();
+  mm.add('(min-width: 1024px)', function () {
+    var shelf = document.querySelector('.shelf'), track = document.querySelector('.shelf-track');
+    shelf.classList.add('pinned');
+    var dist = function () { return Math.max(0, track.scrollWidth - shelf.clientWidth); };
+    gsap.to(track, { x: function () { return -dist(); }, ease: 'none',
+      scrollTrigger: { trigger: shelf, start: 'top 76px', end: function () { return '+=' + dist(); }, pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1 } });
+    return function () { shelf.classList.remove('pinned'); gsap.set(track, { x: 0 }); };
+  });
+  gsap.utils.toArray('.persona, .gems, .spectrum, .aud-list, .how-steps, .ledger ul, .big-links').forEach(function (g) {
+    gsap.from(g.children, { y: 24, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.07, scrollTrigger: { trigger: g, start: 'top 84%' } });
+  });
+  gsap.from('.stairs li', { clipPath: 'inset(100% 0% 0% 0% round 20px)', duration: 1.1, ease: 'expo.out', stagger: 0.12, scrollTrigger: { trigger: '.stairs', start: 'top 78%' } });
+  gsap.from('.spectrum-line', { scaleX: 0, transformOrigin: 'left center', duration: 1.3, ease: 'expo.inOut', scrollTrigger: { trigger: '.spectrum', start: 'top 82%' } });
+  gsap.utils.toArray('.sec-head, .tr-head, .ch-head, .cbh-head, .mission, .climax, .climax-sub, .principle, .reflect, .form-card, .about-main').forEach(function (el) {
+    gsap.from(el, { y: 30, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 86%' } });
+  });
+  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+});
 </script>
 </body>
 </html>
